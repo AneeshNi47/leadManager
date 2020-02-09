@@ -1,0 +1,158 @@
+{{extend 'layout.html'}}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <title>Lead Managment Application</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+      <link href="{{=URL('static/css','sb-admin-2.min.css')}}" rel="stylesheet">
+      <link href="{{=URL('static/css','sb-admin-2.css')}}" rel="stylesheet">
+      <script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
+      <script src="https://www.chartjs.org/samples/latest/utils.js"></script>
+      <script type="text/javascript">
+			function blocker_update(value) {
+          var toggle_id = $(value).data('id');
+          var checkBox = document.getElementById(toggle_id);
+          var user_id = $(value).data('id');
+            if (checkBox.checked == true){
+              var html_blockstat = "blocked";}
+            else{
+              var html_blockstat = "";}
+      //alert(html_blockstat);
+      $.ajax({
+              type: "GET",
+              url: '/init/default/blocked_login',
+              data: { block_id: user_id,
+                     block_status: html_blockstat
+                    },
+              success:function(data){
+                if(data.length > 0){
+                    alert('User Blocked');
+               $("#status_blck").load(" #status_blck > *");
+                }
+                else{
+                  alert('error, try again later');}
+               },
+               error: function(data){
+                    console.log("error");
+                    console.log(error_data);} });
+            }
+ </script>
+    </head>
+    <body>
+        <div class="container">
+			<div class="row">
+				<div class="col-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="card">
+						<div class="card-header">
+							<ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
+								<li class="nav-item">
+									<a class="nav-link active" href="#description" role="tab" aria-controls="description" aria-selected="true">Users</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link"  href="#history" role="tab" aria-controls="history" aria-selected="false">New</a>
+								</li>
+							</ul>
+						</div>
+						<div class="card-body">
+							<div class="tab-content mt-3">
+								<div class="tab-pane active" id="description" role="tabpanel">
+									<div class="table-responsive" >
+                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>S.No</th>
+                                                    <th>Name</th>
+                                                    <th>Role</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="status_blck">
+                                                {{for user in users:}}
+													{{if user.group_id != 2:}}
+                                                    <tr>
+                                                        <th scope="row">{{=user.id}}</th>
+                                                        {{for member in members:}}
+															{{if member.id==user.user_id:}}
+																<td scope="row">{{=member.first_name}} {{=member.last_name}}</td>
+															{{pass}}
+														{{pass}}
+														
+                                                        {{for group in groups:}}
+															{{if group.id==user.group_id:}}
+																<td scope="row">{{=group.role}}</td>
+															{{pass}}
+														{{pass}}
+														<div>
+                                                        {{for member in members:}}
+															{{if member.id==user.user_id:}}
+																<td scope="row" >
+																	{{if member.registration_key=="":}}
+																		<font color="green">Active</font>
+																	{{else:}}
+																		<font color="red">Blocked</font>
+																	{{pass}}
+																</td>
+															{{pass}}
+														{{pass}}
+                                                        </div>
+                                                        {{for member in members:}}
+															{{if member.id==user.user_id:}}
+															<td>
+																<label class="switch">
+																	{{if member.registration_key=="":}}
+																		<input type="checkbox" id="{{=member.id}}" onclick="blocker_update(this)" data-id="{{=member.id}}">
+																	{{pass}}
+																	{{if member.registration_key=="blocked":}}
+																		<input type="checkbox" id="{{=member.id}}" checked onclick="blocker_update(this)" data-id="{{=member.id}}">
+																	{{pass}}
+																	<span class="slider round"></span>
+																</label>
+															</td>
+															{{pass}}
+														{{pass}}
+                                                    </tr>
+													{{pass}}
+                                                {{pass}}
+                                            </tbody>
+                                        </table>
+                                    </div>
+								</div>
+								<div class="tab-pane" id="history" role="tabpanel" aria-labelledby="Upload-tab">
+                                    <form class="user" method="get" action="/init/default/add_staff">
+                                        <div class="form-group row">
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                          First Name.:<input class="form-control form-control-user" type="text" name="user_firstN">
+                                            </div>
+                                            <div class="col-sm-6">
+                                          Last Name: <input class="form-control form-control-user" type="text" name="user_lastN">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                          Email: <input class="form-control form-control-user" type="text" name="user_email">
+                                        </div>
+                                        <p><font color="red">
+                                              Mail will be send to registered user with default password 'dksHjsi081'
+                                         </font></p>
+                                        <input  class="btn btn-primary" type="submit" value="Add">
+                                    </form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+          $('#bologna-list a').on('click', function (e) {
+              e.preventDefault()
+                  $(this).tab('show')
+            })
+		</script>
+        <br>
+        <br>
+        <br>
+    </body>
+</html>

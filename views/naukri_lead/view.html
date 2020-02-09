@@ -1,0 +1,202 @@
+{{extend 'layout.html'}}
+<!DOCTYPE html>
+<!-- Naukri lead View for unassign/assign/update leads-->
+<html lang="en">
+<head>
+  <title>View</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://use.fontawesome.com/c6a90144e7.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script type="text/javascript">
+      function enrol_get(id) {
+      $.ajax({
+              type: "GET",
+              url: '/init/naukri_lead/unassign_lead',
+              data: { deassign: id},
+              success: function(){
+               alert('Sucessfully Unassigned');
+               $("#status_blck").load(" #status_blck > *");
+              },
+               error: function(error_data){
+                    console.log("error");
+                    console.log(error_data);} });}
+  </script>
+  <script type="text/javascript">
+          $(document).ready(function() {
+				$('#dataTable').DataTable( {
+					"lengthMenu": [ 50, 100, 250, 500 ]
+					} );
+				} );
+  </script>
+  <script type="text/javascript">
+      function lead_statusupdate(value) {
+          var leadno = $(value).data('id');
+          var status = $(value).data('btn_status');
+          var updater = $(value).data('btn_user');
+          if (status !== "SMS Pending" && status !== "Mailer Pending"){
+              var remarks = prompt("Please remarks related to your update:", "Daily Update");
+              if (remarks == null || remarks == "") {
+                remarks = "No remarks entered";
+              }}
+      $.ajax({
+              type: "GET",
+              url: '/init/naukri_lead/leadStatus_update',
+              data: { view_leadno: leadno,
+                       view_status: status,
+                        view_updater: updater,
+                         view_remarks: remarks },
+              success: function(){
+               alert('Sucessfully Assigned');
+               $("#status_blck").load(" #status_blck > *");
+              },
+               error: function(error_data){
+                    console.log("error");
+                    console.log(error_data);} });}
+  </script>
+</head>
+
+
+<body oncopy="return false" onpaste="return false" oncut="return false">
+	<h1 class="h3 mb-2 text-gray-800">Lead Table  
+		<a href="path/to/shopping/cart" class="btn btn-primary" aria-label="View 3 items in your shopping cart">
+			<i class="fa fa-external-link-square" aria-hidden="true"></i>
+		</a>
+	</h1>
+	<div class="card shadow mb-4">
+		<div class="card-header py-3">
+			{{if auth.has_membership(1):}}<h6 class="m-0 font-weight-bold text-primary">Fresh Data</h6>{{pass}}
+            {{if auth.has_membership(2):}}<h6 class="m-0 font-weight-bold text-primary">Fresh Data Distribution</h6>{{pass}}
+		</div>
+		<div class="card-body" id="table-1" >
+			<div class="table-responsive" >
+				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+					<thead>
+						<tr>
+							<th style="text-align: center;">S.No</th>
+							<th style="text-align: center;">Name</th>
+							<th style="text-align: center;">Qualification</th>
+							{{if auth.has_membership(1):}}<th style="text-align: center;">Email</th>{{pass}}
+                            {{if not auth.has_membership(1):}}<th style="text-align: center;">Location</th>{{pass}}
+							{{if not auth.has_membership(1):}}<th style="text-align: center;">Assigned</th>{{pass}}
+							{{if auth.has_membership(1):}}<th style="text-align: center;">Phone No.</th>{{pass}}
+							<th style="text-align: center;">Remarks</th>
+							<th style="text-align: center;">Actions</th>
+						</tr>
+					</thead>
+					<tbody id="status_blck">
+						{{if db(db.naukri_leads).count != 0:}}
+							{{for lead in leads:}}
+							<tr>
+								<th scope="row">{{=lead.id}}</th>
+								<td style="text-align: left;"><h6><a href="{{=URL('show',args=lead.id)}}">{{=lead.Name}}</a></h6></td>
+								<td style="text-align: left;" oncopy="return true"><h6>{{=lead.Highest_Qualification}}</h6></td>
+                                {{if auth.has_membership(1):}}<td style="text-align: left;"><h6>{{=lead.Email}}</h6></td>{{pass}}
+								{{if not auth.has_membership(1):}}<td style="text-align: left;"><h6>{{=lead.Present_Location}}</h6></td>{{pass}}
+								{{if auth.has_membership(1):}}<td style="text-align: center;"><h6>{{=lead.Mobile}}</h6></td>{{pass}}
+								
+								{{if not auth.has_membership(1):}} <!--(1) shows the marketing group-->
+									{{for member in members:}}
+										{{if member.id == lead.Assigned_to:}}
+											<td style="text-align: left;"><h6>{{=member.first_name}}</h6></td>
+										{{pass}}
+									{{pass}}
+									{{remarks = db(db.Lead_Status.lead_id == lead.id).select()}}
+									{{if db(db.Lead_Status.lead_id == lead.id).count() != 0:}}
+										{{for remark in remarks:}}
+											{{comment = remark.Remarks}}
+										{{pass}}
+										<td style="text-align: left;"><h6>{{=comment}}</h6></td>
+									{{else:}}
+										<td style="text-align: left;"><h6>None</h6></td>
+									{{pass}}
+									<td>
+										<button  id="deassign" type="button" class="btn btn-danger" style="text-align: center;" onclick="enrol_get(this.id)"><i class="fa fa-edit"> Unassign</i></button>
+										<script> document.getElementById("deassign").id = {{=lead.id}}; </script>
+									</td>
+								{{pass}}
+								
+								{{if auth.has_membership(1):}}
+									{{remarks = db(db.Lead_Status.lead_id == lead.id).select()}}
+									{{if db(db.Lead_Status.lead_id == lead.id).count() != 0:}}
+										{{for remark in remarks:}}
+											{{comment = remark.Remarks}}
+										{{pass}}
+										<td style="text-align: left;"><h6>{{=comment}}</h6></td>
+									{{else:}}
+										<td style="text-align: left;"><h6>None</h6></td>
+									{{pass}}
+									<td>
+										<div class ="row">
+										{{for member in members:}}
+											{{if member.id == lead.Assigned_to:}}
+											<div class="col">
+														{{if (lead.Final_Status != "SMS Pending") & (lead.Final_Status != "SMS Processing") & (lead.Final_Status != "Mailer Pending") & (lead.Final_Status != "Mailer Processing") & (lead.Final_Status != "Converted"):}}
+															<div class="dropdown">
+																<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">{{=lead.Final_Status}}</button>
+																<div class="dropdown-menu">
+																	<a id="Details_btn"  class="dropdown-item" type="button" onclick="lead_statusupdate(this)" data-id="{{=lead.id}}" data-btn_status="Details Send" data-btn_user="{{=member.id}}"><i class="fa fa-flag-checkered"> Details Send</i></a>
+																	<a id="NoResponse_btn" class="dropdown-item" type="button" onclick="lead_statusupdate(this)" data-id="{{=lead.id}}" data-btn_status="No Response" data-btn_user="{{=member.id}}"><i class="fa fa-clock-o"></i> No Response</a>
+																	<a id="SwitchOff_btn" class="dropdown-item" type="button" onclick="lead_statusupdate(this)" data-id="{{=lead.id}}" data-btn_status="Switch Off" data-btn_user="{{=member.id}}"><i class="fa fa-clock-o"></i> Switch Off</a>
+																	<a id="Invalid_btn" class="dropdown-item" type="button" onclick="lead_statusupdate(this)" data-id="{{=lead.id}}" data-btn_status="Invalid no." data-btn_user="{{=member.id}}"><i class="fa fa-clock-o"></i> Invalid no.</a>
+																	<a id="Callback_btn" class="dropdown-item" type="button" onclick="lead_statusupdate(this)" data-id="{{=lead.id}}" data-btn_status="Call back" data-btn_user="{{=member.id}}"><i class="fa fa-clock-o"></i> Call back</a>
+																	<a id="Ntintrested_btn" class="dropdown-item" type="button" onclick="lead_statusupdate(this)" data-id="{{=lead.id}}" data-btn_status="Not intrested" data-btn_user="{{=member.id}}"><i class="fa fa-clock-o"></i> Not intrested</a>
+																	<a id="Followup_btn" class="dropdown-item" type="button" onclick="lead_statusupdate(this)" data-id="{{=lead.id}}" data-btn_status="Follow-up" data-btn_user="{{=member.id}}"><i class="fa fa-clock-o"></i> Follow-up</a>
+																	<a id="intrested_btn" class="dropdown-item" type="button" onclick="lead_statusupdate(this)" data-id="{{=lead.id}}" data-btn_status="Intrested" data-btn_user="{{=member.id}}"><i class="fa fa-clock-o"></i> Intrested</a>
+																	<a id="SMS_btn" class="dropdown-item" type="button" onclick="lead_statusupdate(this)" data-id="{{=lead.id}}" data-btn_status="SMS Pending" data-btn_user="{{=member.id}}"><i class="fa fa-clock-o"></i> SMS Campaign</a>
+																	<a id="Mailer_btn" class="dropdown-item" type="button" onclick="lead_statusupdate(this)" data-id="{{=lead.id}}" data-btn_status="Mailer Pending" data-btn_user="{{=member.id}}"><i class="fa fa-clock-o"></i> Mail Campaign</a>
+																	<a id="Converted_btn" class="dropdown-item" type="button" onclick="lead_statusupdate(this)" data-id="{{=lead.id}}" data-btn_status="Converted" data-btn_user="{{=member.id}}"><i class="fa fa-check"></i> Converted</a>
+																	<a id="Lost_btn" class="dropdown-item" type="button" onclick="lead_statusupdate(this)" data-id="{{=lead.id}}" data-btn_status="Lost" data-btn_user="{{=member.id}}"><i class="fa fa-times"></i> Lost</a>
+																</div>
+															</div>
+														{{else:}}
+															<div class="dropdown">
+																<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">Locked</button>
+																<div class="dropdown-menu"></div>
+															</div>
+														{{pass}}
+											</div>
+											<div class="col">
+												<li class="dropdown no-arrow" style="padding: 0px; width: 1px; text-align: center;">
+													<a class="nav-link dropdown-toggle" style="padding: 0px;" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+														<i class="fas fa-bell fa-fw faa-ring faa-slow faa-slow animated-hover"></i>
+													</a>
+													<div class="dropdown-list dropdown-menu dropdown-menu-left shadow animated--grow-in" aria-labelledby="messagesDropdown">
+														<h6 class="dropdown-header">Set Reminder</h6>
+														<a class="dropdown-item d-flex align-items-center" href="#">
+															<form class="user" method="get" action="/init/naukri_lead/set_reminder">
+																<input type="hidden"  name="set_byuser" value="{{=member.id}}">
+																<input type="hidden"  name="lead_id" value="{{=lead.id}}">
+																<div class="form-group">
+																	Remarks:<input class="form-control form-control-user" type="text" name="user_remarks">
+																</div>
+																<div class="form-group">
+																	Reminder Date: <input class="form-control form-control-user" type="date" name="remind_date">
+																</div>
+																<input  class="btn btn-primary" type="submit" value="Set Reminder">
+															</form>
+														</a>
+														<a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+													</div>
+												</li>
+											</div>	
+											{{pass}}
+										{{pass}}
+										</div>
+									</td>
+								{{pass}}
+							</tr>
+						{{pass}}
+                    {{pass}}
+				</tbody>
+			</table>
+
+		</div>
+		</div>
+    </div>
+	<a class="scroll-to-top rounded" href="#page-top">
+		<i class="fa fa-angle-up"></i>
+	</a>
+ </body>
+</html>

@@ -1,0 +1,80 @@
+{{extend 'layout.html'}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Lead Details</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://use.fontawesome.com/c6a90144e7.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+
+<body>
+
+<h1 class="h3 mb-2 text-gray-800">Lead Details</h1>
+  <div class="card shadow mb-4">
+     <div class="card-header py-3">
+       <h5 class="m-0 font-weight-bold text-primary">Lead ID : {{=post.id}}</h5>
+         <p class="text-muted">
+         {{if post.platform == 'Facebook':}}<i class="fa fa-facebook-official fa-2x"></i>{{pass}}
+         {{if post.platform == 'LinkedIn':}}<i class="fa fa-linkedin-square fa-2x"></i>{{pass}}
+         {{if post.platform == 'Call':}}<i class="fa fa-phone-square fa-2x"></i>{{pass}}
+         {{if post.platform == 'Whatsapp':}}<i class="fa fa-whatsapp fa-2x"></i>{{pass}}
+         {{if post.platform == 'Website':}}<i class="fa fa-globe fa-2x"></i>{{pass}}
+         {{if post.platform == 'Others':}}<i class="fa fa-external-link fa-2x"></i>{{pass}}
+         <sup><i>Created on {{=post.Lead_Date}}</i></sup></p>
+     </div>
+     <div class="card-body">
+         <div class="table-responsive">
+             <table class="table table-bordered" id="dataTable" cellspacing="0">
+                 <tbody>
+                 <tr>
+                     <td><h6>Name: </h6><p class="text-muted">{{=post.full_name}}</p></td>
+                     <td><h6>Country: </h6><p class="text-muted">{{=post.country}}</p></td>
+                     <td><h6>Course: </h6><p class="text-muted">{{=post.Course}}</p></td>
+                 </tr>
+                 <tr>
+                     <td><h6>Contact Phone No.: </h6><p class="text-muted">{{=post.phone_number}}</p></td>
+                     <td><h6 style="display:inline">Email: </h6><p class="text-muted"><a href="mailto:{{=post.email}}">{{=post.email}}</a></p></td>
+                 </tr>
+                 </tbody>
+             </table>
+             <a class="btn btn-primary" href="{{=URL('view')}}" role="button">BACK</a>
+         </div>
+         </div>
+      </div>
+             
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Status Updates</button>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+      <table class="table table-bordered" id="dataTable" cellspacing="0">
+          <thead>
+              <tr>
+                  <th>Status</th>
+                  <th>Update</th>
+                  <th>Remarks</th>
+              </tr>
+          </thead>
+                 <tbody>
+                     {{for status in statuss:}}
+                         {{if status.lead_id == post.id:}}
+                             <tr>
+                                 <td>{{=status.status}}</td>
+                                 <td>{{=status.Update_Date}}</td>
+                                 <td>{{=status.Remarks}}</td>
+                             </tr>
+                         {{pass}}
+                    {{pass}}
+                 </tbody>
+             </table>
+</div>
+         </div>
+ <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fa fa-angle-up"></i>
+  </a>
+
+</body>
+</html>

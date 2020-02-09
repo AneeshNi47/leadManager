@@ -1,0 +1,134 @@
+{{extend 'layout.html'}}
+<!DOCTYPE html>
+<!-- HTML View for registration and deletion of Employees-->
+<html lang="en">
+<head>
+   <title>Assign General</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/sl-1.3.1/datatables.min.css"/>
+  <link rel="stylesheet" type="text/css" href="{{=URL('static/css','sb-admin-2.min.css')}}" ><!-- SB admin template style -->
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/sl-1.3.1/datatables.min.js"></script>
+  <script src="https://use.fontawesome.com/c6a90144e7.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script>//<!-- JS script for group assign -->
+        function group_assignment(value) {
+             var id_no = $(value).data('type');
+             var user = $(value).data('person');
+             var table = $('#dataTable').DataTable();
+             var data = $('#dataTable').DataTable().rows('.selected').data();
+             //console.log(data);
+             var i;
+             for (i = 0; i < table.rows('.selected').data().length; i++) {
+                 $.ajax({
+                         type: "GET",
+                         url: '/init/default/action_assign',
+                         data: { lead_no: data[i][0],
+                                 assign_to: id_no } });}
+            alert(table.rows('.selected').data().length +' lead(s) assigned to' + " " + user );
+            $("#dataTable").load(" #dataTable > *");
+           }
+  </script>
+  <script  type="text/javascript">
+          $(document).ready(function() {
+                var table = $('#dataTable').DataTable();
+                $('#dataTable tbody').on( 'click', 'tr', function () {
+                    $(this).toggleClass('selected');
+                    } );
+               } );
+  </script>
+    <script type="text/javascript">
+          $(document).ready(function() {
+                $('#dataTable').DataTable( {
+                             "lengthMenu": [ 50, 100, 250, 500 ]
+                              } );
+                } );
+    </script>
+  <script type="text/javascript">
+      function lead_assignment(value) {
+          var import_id = $(value).data('id');
+          var type = $(value).data('type');
+      $.ajax({
+              type: "GET",
+              url: '/init/default/action_assign',
+              data: { lead_no: import_id ,
+                       assign_to: type },
+              success: function(){
+               alert('Sucessfully Assigned');
+               $("#status_blck").load(" #status_blck > *");
+               },
+               error: function(error_data){
+                    console.log("error");
+                    console.log(error_data);} });}
+ </script>
+</head>
+
+
+<body onload=display_ct();>
+ <h1 class="h3 mb-2 text-gray-800">Lead Distribution</h1>
+  <div class="card shadow mb-4">
+     <div class="card-header py-3">
+       <h6 class="m-0 font-weight-bold text-primary">Unassigned Leads</h6>
+     </div>
+     <div class="card-body">
+     <div class="table-responsive">
+     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="1">
+        <thead>
+          <tr>
+            <th style="text-align: center;">S.No</th>
+            <th style="text-align: center;">Name</th>
+            <th style="text-align: center;">Source</th>
+            <th style="text-align: center;">Course</th>
+            <th style="text-align: center;">Contact</th>
+            <th style="text-align: center;">Marketer</th>
+          </tr>
+        </thead>
+        <tbody id="status_blck">
+			{{for lead in leads:}}
+                {{if lead.Assigned_to == None:}}
+				<tr>
+					<th scope="row">{{=lead.id}}</th>
+                    <td style="text-align: left;"><h6>{{=lead.full_name}}</h6></td>
+					<td style="text-align: left;"><h6>{{=lead.platform}}</h6></td>
+                    <td style="text-align: center;"><h6>{{=lead.Course}}</h6></td>
+                    <td style="text-align: center;"><h6>{{=lead.phone_number}}</h6></td>
+					<td>
+                        <div class="dropdown mb-4">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Assign</button>
+                        <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
+                          {{for member in members:}}
+                             {{if auth.has_membership(1, member.id):}}
+                                  <a class="dropdown-item"  onclick="lead_assignment(this)" data-id="{{=lead.id}}" data-type="{{=member.id}}"><i class="fa fa-user">{{=member.first_name}}</i></a>
+                             {{pass}}
+                          {{pass}}
+                        </div>
+                      </div>
+					</td>
+				</tr>
+            {{pass}}
+			{{pass}}
+        </tbody>
+      </table>
+         <button id="button">Row count</button>
+         <div class="dropdown">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Page Assign</button>
+                        <div class="dropdown-menu">
+                          {{for member in members:}}
+                             {{if auth.has_membership(1, member.id):}}
+                              <a class="dropdown-item" onclick="group_assignment(this)" id="group_assign" data-type="{{=member.id}}" data-person="{{=member.first_name}}" ><i class="fa fa-user"> {{=member.first_name}}</i></a>
+                             {{pass}}
+                          {{pass}}
+                        </div>
+                      </div>
+      </div>
+      </div>
+     </div>
+    </div>
+   </div>
+ <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fa fa-angle-up"></i>
+  </a>
+ </body>
+</html>

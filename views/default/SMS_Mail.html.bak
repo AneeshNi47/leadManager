@@ -1,0 +1,342 @@
+{{extend 'layout.html'}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Campaign</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://use.fontawesome.com/c6a90144e7.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+
+<body>
+
+  <div class="card shadow mb-4">
+     <div class="card-header py-3">
+       <h5 class="m-0 font-weight-bold text-primary">SMS/Email Campaign for General Data</h5>
+     </div>
+     <div class="card-body"><!--content of the page -->
+         <div class="row">
+            <!-- Pending Requests Card Example ------------------------------------------------------------------>
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-warning shadow h-100 py-2">
+                  <div class="card-body" >
+                    <!--SMS Campaign part-->
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">SMS PENDING</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{=db(db.Fb_leads.Final_Status =='SMS Pending').count()}}</div>
+                      </div>
+                      <div class="col-auto">
+                          <!--Drop down for actions-->
+                          <div class="dropdown no-arrow">
+                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                 <i class="fas fa-comments fa-2x fa-fw text-gray-400"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                <div class="dropdown-header">Options:</div>
+                                <a class="dropdown-item" href="{{=URL('default','export_CSV',args=['Fb_leads','SMS','Pending'])}}">Download CSV</a>
+                                <a class="dropdown-item" href="{{=URL('default','SM_statuschange',args=['Fb_leads','SMS','Pending','Processing'])}}">Processing</a>
+                            </div>
+                          </div>
+                          <!--end of Drop down for actions-->
+                      </div>
+                   </div>
+                      <!--End of SMS Campaign part-->
+                    <!--Mail Campaign part-->
+                   <div class="row no-gutters align-items-center">
+                     <div class="col mr-2">
+                       <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Mailer PENDING</div>
+                       <div class="h5 mb-0 font-weight-bold text-gray-800">{{=db(db.Fb_leads.Final_Status =='Mailer Pending').count()}}</div>
+                     </div>
+                     <div class="col-auto">
+                          <!--Drop down for actions-->
+                          <div class="dropdown no-arrow">
+                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                 <i class="fas fa-comments fa-2x fa-fw text-gray-400"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                <div class="dropdown-header">Options:</div>
+                                <a class="dropdown-item" href="{{=URL('default','export_CSV',args=['Fb_leads','Mailer','Pending'])}}">Download CSV</a>
+                                <a class="dropdown-item" href="{{=URL('default','SM_statuschange',args=['Fb_leads','Mailer','Pending','Processing'])}}">To Processing</a>
+                            </div>
+                          </div>
+                          <!--end of Drop down for actions-->
+                     </div>
+                   </div>
+                    <!--End of Mail Campaign part-->
+                 </div>
+               </div>
+             </div>
+            <!-- End of Pending Requests Card Example ------------------------------------------------------------------>
+
+
+             <!-- Processing Requests Card Example ------------------------------------------------------------------>
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                  <div class="card-body" >
+                    <!--SMS Campaign part-->
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">SMS PROCESSING</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{=db(db.Fb_leads.Final_Status =='SMS Processing').count()}}</div>
+                      </div>
+                      <div class="col-auto">
+                          <!--Drop down for actions-->
+                          <div class="dropdown no-arrow">
+                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                 <i class="fas fa-comments fa-2x fa-fw text-gray-400"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                <div class="dropdown-header">Options:</div>
+                                <a class="dropdown-item" href="{{=URL('default','export_CSV',args=['Fb_leads','SMS','Processing'])}}">Download CSV</a>
+                                <a class="dropdown-item" href="{{=URL('default','SM_statuschange',args=['Fb_leads','SMS','Processing','Completed'])}}">To Completed</a>
+                            </div>
+                          </div>
+                          <!--end of Drop down for actions-->
+                      </div>
+                   </div>
+                    <!--End of SMS Campaign part-->
+                    <!--Mail Campaign part-->
+                   <div class="row no-gutters align-items-center">
+                     <div class="col mr-2">
+                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Mailer PROCESSING</div>
+                       <div class="h5 mb-0 font-weight-bold text-gray-800">{{=db(db.Fb_leads.Final_Status =='Mailer Processing').count()}}</div>
+                     </div>
+                     <div class="col-auto">
+                          <!--Drop down for actions-->
+                          <div class="dropdown no-arrow">
+                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                 <i class="fas fa-comments fa-2x fa-fw text-gray-400"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                <div class="dropdown-header">Options:</div>
+                                <a class="dropdown-item" href="{{=URL('default','export_CSV',args=['Fb_leads','Mailer','Processing'])}}">Download CSV</a>
+                                <a class="dropdown-item" href="{{=URL('default','SM_statuschange',args=['Fb_leads','Mailer','Processing','Completed'])}}">To Completed</a>
+                            </div>
+                          </div>
+                          <!--end of Drop down for actions-->
+                     </div>
+                   </div>
+                      <!--End of Mail Campaign part-->
+                 </div>
+               </div>
+             </div>
+            <!-- End of Processing Requests Card Example ------------------------------------------------------------------>
+
+
+             <!-- Completed Requests Card Example ------------------------------------------------------------------>
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body" >
+                    <!--SMS Campaign part-->
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">SMS COMPLETED</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{=db(db.Fb_leads.Final_Status =='SMS Completed').count()}}</div>
+                      </div>
+                      <div class="col-auto">
+                          <!--Drop down for actions-->
+                          <div class="dropdown no-arrow">
+                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                 <i class="fas fa-comments fa-2x fa-fw text-gray-400"></i>
+                            </a>
+                          </div>
+                          <!--end of Drop down for actions-->
+                      </div>
+                   </div>
+                      <!--End of SMS Campaign part-->
+                    <!--Mail Campaign part-->
+                   <div class="row no-gutters align-items-center">
+                     <div class="col mr-2">
+                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Mailer COMPLETED</div>
+                       <div class="h5 mb-0 font-weight-bold text-gray-800">{{=db(db.Fb_leads.Final_Status =='Mailer Completed').count()}}</div>
+                     </div>
+                     <div class="col-auto">
+                          <!--Drop down for actions-->
+                          <div class="dropdown no-arrow">
+                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                 <i class="fas fa-comments fa-2x fa-fw text-gray-400"></i>
+                            </a>
+                          </div>
+                          <!--end of Drop down for actions-->
+                     </div>
+                   </div>
+                      <!--End of Mail Campaign part-->
+                 </div>
+               </div>
+             </div>
+            <!-- End of Completed Requests Card Example ------------------------------------------------------------------>
+         </div>
+     </div>
+   </div>
+<!-- End of General lead Card Example ------------------------------------------------------------------>
+
+
+    <div class="card shadow mb-4">
+     <div class="card-header py-3">
+       <h5 class="m-0 font-weight-bold text-primary">SMS/Email Campaign for Fresh Data</h5>
+     </div>
+     <div class="card-body"><!--content of the page -->
+         <div class="row">
+            <!-- Pending Requests Card Example ------------------------------------------------------------------>
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-warning shadow h-100 py-2">
+                  <div class="card-body" >
+                    <!--SMS Campaign part-->
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">SMS PENDING</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{=db(db.naukri_leads.Final_Status =='SMS Pending').count()}}</div>
+                      </div>
+                      <div class="col-auto">
+                          <!--Drop down for actions-->
+                          <div class="dropdown no-arrow">
+                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                 <i class="fas fa-comments fa-2x fa-fw text-gray-400"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                <div class="dropdown-header">Options:</div>
+                                <a class="dropdown-item" href="{{=URL('default','export_CSV',args=['naukri_leads','SMS','Pending'])}}">Download CSV</a>
+                                <a class="dropdown-item" href="{{=URL('default','SM_statuschange',args=['naukri_leads','SMS','Pending','Processing'])}}">To Processing</a>
+                            </div>
+                          </div>
+                          <!--end of Drop down for actions-->
+                      </div>
+                   </div>
+                      <!--End of SMS Campaign part-->
+                    <!--Mail Campaign part-->
+                   <div class="row no-gutters align-items-center">
+                     <div class="col mr-2">
+                       <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Mailer PENDING</div>
+                       <div class="h5 mb-0 font-weight-bold text-gray-800">{{=db(db.naukri_leads.Final_Status =='Mailer Pending').count()}}</div>
+                     </div>
+                     <div class="col-auto">
+                          <!--Drop down for actions-->
+                          <div class="dropdown no-arrow">
+                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                 <i class="fas fa-comments fa-2x fa-fw text-gray-400"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                <div class="dropdown-header">Options:</div>
+                                <a class="dropdown-item" href="{{=URL('default','export_CSV',args=['naukri_leads','Mailer','Pending'])}}">Download CSV</a>
+                                <a class="dropdown-item" href="{{=URL('default','SM_statuschange',args=['naukri_leads','Mailer','Pending','Processing'])}}">To Processing</a>
+                            </div>
+                          </div>
+                          <!--end of Drop down for actions-->
+                     </div>
+                   </div>
+                    <!--End of Mail Campaign part-->
+                 </div>
+               </div>
+             </div>
+            <!-- End of Pending Requests Card Example ------------------------------------------------------------------>
+
+
+             <!-- Processing Requests Card Example ------------------------------------------------------------------>
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                  <div class="card-body" >
+                    <!--SMS Campaign part-->
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">SMS PROCESSING</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{=db(db.naukri_leads.Final_Status =='SMS Processing').count()}}</div>
+                      </div>
+                      <div class="col-auto">
+                          <!--Drop down for actions-->
+                          <div class="dropdown no-arrow">
+                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                 <i class="fas fa-comments fa-2x fa-fw text-gray-400"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                <div class="dropdown-header">Options:</div>
+                                <a class="dropdown-item" href="{{=URL('default','export_CSV',args=['naukri_leads','SMS','Processing'])}}">Download CSV</a>
+                                <a class="dropdown-item" href="{{=URL('default','SM_statuschange',args=['naukri_leads','SMS','Processing','Completed'])}}">To Completed</a>
+                            </div>
+                          </div>
+                          <!--end of Drop down for actions-->
+                      </div>
+                   </div>
+                    <!--End of SMS Campaign part-->
+                    <!--Mail Campaign part-->
+                   <div class="row no-gutters align-items-center">
+                     <div class="col mr-2">
+                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Mailer PROCESSING</div>
+                       <div class="h5 mb-0 font-weight-bold text-gray-800">{{=db(db.naukri_leads.Final_Status =='Mailer Processing').count()}}</div>
+                     </div>
+                     <div class="col-auto">
+                          <!--Drop down for actions-->
+                          <div class="dropdown no-arrow">
+                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                 <i class="fas fa-comments fa-2x fa-fw text-gray-400"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                <div class="dropdown-header">Options:</div>
+                                <a class="dropdown-item" href="{{=URL('default','export_CSV',args=['naukri_leads','Mailer','Processing'])}}">Download CSV</a>
+                                <a class="dropdown-item" href="{{=URL('default','SM_statuschange',args=['naukri_leads','Mailer','Processing','Completed'])}}">To Completed</a>
+                            </div>
+                          </div>
+                          <!--end of Drop down for actions-->
+                     </div>
+                   </div>
+                      <!--End of Mail Campaign part-->
+                 </div>
+               </div>
+             </div>
+            <!-- End of Processing Requests Card Example ------------------------------------------------------------------>
+
+
+             <!-- Completed Requests Card Example ------------------------------------------------------------------>
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body" >
+                    <!--SMS Campaign part-->
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">SMS COMPLETED</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{=db(db.naukri_leads.Final_Status =='SMS Completed').count()}}</div>
+                      </div>
+                      <div class="col-auto">
+                          <!--Drop down for actions-->
+                          <div class="dropdown no-arrow">
+                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                 <i class="fas fa-comments fa-2x fa-fw text-gray-400"></i>
+                            </a>
+                          </div>
+                          <!--end of Drop down for actions-->
+                      </div>
+                   </div>
+                      <!--End of SMS Campaign part-->
+                    <!--Mail Campaign part-->
+                   <div class="row no-gutters align-items-center">
+                     <div class="col mr-2">
+                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">MAILER COMPLETED</div>
+                       <div class="h5 mb-0 font-weight-bold text-gray-800">{{=db(db.naukri_leads.Final_Status =='Mailer Completed').count()}}</div>
+                     </div>
+                     <div class="col-auto">
+                          <!--Drop down for actions-->
+                          <div class="dropdown no-arrow">
+                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                 <i class="fas fa-comments fa-2x fa-fw text-gray-400"></i>
+                            </a>
+                          </div>
+                          <!--end of Drop down for actions-->
+                     </div>
+                   </div>
+                      <!--End of Mail Campaign part-->
+                 </div>
+               </div>
+             </div>
+            <!-- End of Completed Requests Card Example ------------------------------------------------------------------>
+
+         </div>
+     </div>
+   </div>
+ <a class="scroll-to-top rounded" href="#page-top"><i class="fa fa-angle-up"></i></a>
+
+</body>
+</html>

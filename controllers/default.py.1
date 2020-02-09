@@ -1,0 +1,250 @@
+# -*- coding: utf-8 -*-
+# -------------------------------------------------------------------------
+# This is a sample controller
+# this file is released under public domain and you can use without limitations
+# -------------------------------------------------------------------------
+
+# ---- example index page ----
+
+def index():#login page data for form
+    """
+    exposes:
+    http://..../[app]/default/user/login
+    http://..../[app]/default/user/logout
+    http://..../[app]/default/user/register
+    http://..../[app]/default/user/profile
+    http://..../[app]/default/user/retrieve_password
+    http://..../[app]/default/user/change_password
+    http://..../[app]/default/user/bulk_register
+    use @auth.requires_login()
+        @auth.requires_membership('group name')
+        @auth.requires_permission('read','table name',record_id)
+    to decorate functions that need access control
+    also notice there is http://..../[app]/appadmin/manage/auth to allow administrator to manage users
+    """
+    auth.settings.login_next = URL('default','home')
+    return dict(form = auth())
+    #return dict(message=T('Welcome to web2py!'))
+
+
+@auth.requires_login()
+def home():#home page for charts home leads table FB_leads
+    Facebook = db(db.Fb_leads.platform=="Facebook").count()
+    LinkedIn = db(db.Fb_leads.platform=="LinkedIn").count()
+    Website = db(db.Fb_leads.platform=="Website").count()
+    Call = db(db.Fb_leads.platform=="Call").count()
+    Whatsapp = db(db.Fb_leads.platform=="Whatsapp").count()
+    Others = db(db.Fb_leads.platform=="Others").count()
+    No_assign = db(db.Fb_leads.Assigned_to == None).count()
+    fst_Contact = db(db.Fb_leads.Final_Status == '1st Contact').count()
+    Pending = db(db.Fb_leads.Final_Status == 'Pending').count()
+    SMS_P = db(db.Fb_leads.Final_Status == 'SMS Pending').count()
+    Mailer_P = db(db.Fb_leads.Final_Status == 'Mailer Pending').count()
+    Converted = db(db.Fb_leads.Final_Status == 'Converted').count()
+    Intrested = db(db.Fb_leads.Final_Status == 'Intrested').count()
+    Lost = db(db.Fb_leads.Final_Status == 'Lost').count()
+    enrolls = db(db.Enrollment).select()
+    memberships = db(db.auth_membership).select()
+    members = db(db.auth_user).select()
+    return locals()
+
+def chart():#table content for charts page-not active
+    Facebook = db(db.Fb_leads).select(db.Fb_leads.platform)#count()
+    return response.json(Facebook)
+
+@auth.requires(auth.has_membership('Creator') or auth.has_membership('Admin'))#assign page db data to view
+def assign():
+    #members_role = db(db.auth_membership.group_id == 1).select()
+    members = db(db.auth_user).select()
+    leads = db(db.Fb_leads).select()
+    #grid = SQLFORM.grid(db.Fb_leads,create=False,csv=False)
+    return locals()
+
+@auth.requires(auth.has_membership('Creator') or auth.has_membership('Admin'))#assign page lead assign button fuction
+def action_assign():
+    db(db.Fb_leads.id == request.vars.lead_no).update(Assigned_to = request.vars.assign_to)
+    db.commit()
+    if request.vars.typer != 'set':
+        db.notifications.insert(notif_use='Gnrl_leads', lead_id=request.vars.lead_no, Message='New General Lead assigned', Given_by=auth.user_id, Given_to=request.vars.assign_to)
+        db.commit()
+    message = request.vars.lead_no
+    return message
+
+
+@auth.requires_login()#show for general leads table FB_leads
+def show():
+    post = db.Fb_leads(request.args(0,cast=int))
+    return locals()
+
+
+@auth.requires(auth.has_membership('Creator') or auth.has_membership('Admin'))#settings page db data for show
+def settings():
+    users =db(db.auth_membership).select()
+    members = db(db.auth_user).select()
+    groups = db(db.auth_group).select()
+    return locals()
+
+@auth.requires(auth.has_membership('Creator') or auth.has_membership('Admin'))#settings page user addition page
+def add_staff():
+    password = 'dksHjsi081'
+    password_crypt = CRYPT()(password.encode('utf8'))[0]
+    db.auth_user.insert(first_name=request.vars.user_firstN, last_name=request.vars.user_lastN, email=request.vars.user_email, password=password_crypt)
+    db.commit()
+    new_id = db(db.auth_user.first_name == request.vars.user_firstN).select(db.auth_user.id)
+    db.auth_membership.insert(user_id=new_id[0], group_id=1)
+    db.commit()
+    redirect(URL('default','settings'))
+    return locals()
+
+from gluon.tools import Mail
+def mail_send():
+    mail = Mail()
+    mail.settings.server = 'smtp.gmail.com:587'
+    mail.settings.sender = 'atms.application@gmail.com'
+    mail.settings.login = 'atms.application@gmail.com:nvegpnvpvfidfjeh'
+    test = mail.send(to=['dr2633@gmail.com'],
+          subject='hello',
+          # If reply_to is omitted, then mail.settings.sender is used
+          reply_to='us@example.com',
+          message='<html> <body> <img src="/static/fa_Dashboard_view.jpg" class="mh-100" style="width: 100%; height: 100%;" alt="..."></body></html>')
+    return test
+
+@auth.requires( auth.has_membership('Admin') )#setting page user blocking function
+def blocked_login():
+    db(db.auth_user.id == request.vars.block_id).update(registration_key=request.vars.block_status)
+    db.commit()
+    redirect(URL('default','settings'))
+    return response.json([{'message': 'login blocked'}])
+
+@auth.requires_login()#enroll page db request for input
+def enroll():
+    form = SQLFORM(db.Enrollment).process()
+    if form.accepted:
+        session.flash = 'form accepted'
+    elif form.errors:
+        session.flash = 'form has errors'
+    else:
+        response.flash = 'please fill the form'
+    if auth.user_groups.values()[0] == 'Sales_Staff':
+        query = db.Enrollment.created_by == auth.user_id
+    else:
+        query = db.Enrollment
+    enrolls = db(query).select()
+    members = db(db.auth_user).select()
+    return locals()
+
+
+@auth.requires_login()#show for enrollment table Enrollment
+def show_en():
+    post = db.Enrollment(request.args(0,cast=int))
+    return locals()
+
+
+@auth.requires_login()
+def alerts_view():
+    query_1 = db.notifications.Given_to == auth.user_id
+    query_2 = db.notifications.Status == 'Open'
+    alerts = db(query_1 & query_2).select()
+    members = db(db.auth_user).select()
+    return locals()
+
+
+@auth.requires_login()
+def alert_closer():
+    db(db.notifications.id == request.vars.alert_id).update(Status='Close')
+    db.commit()
+    redirect(URL('default','alerts_view'))
+    return locals()
+
+@auth.requires(auth.has_membership('Creator') or auth.has_membership('Admin'))
+def SMS_Mail():
+    gnrl_leads = db(db.Fb_leads).select()
+    frsh_leads = db(db.naukri_leads).select()
+    return locals()
+
+def SM_statuschange():
+    status = request.args[2]#eg. /FB_leads/SMS/Pending/Processing = change in FB_leads table SMS Pending to SMS Processing
+    current_status = request.args[1] + ' ' + request.args[2]
+    next_status = request.args[1] + ' ' + request.args[3]
+    if (request.args[0]=="Fb_leads"):
+        db(db.Fb_leads.Final_Status == current_status).update(Final_Status = next_status)
+        db.commit()
+    elif (request.args[0]=="naukri_leads"):
+        db(db.naukri_leads.Final_Status == current_status).update(Final_Status = next_status)
+        db.commit()
+    redirect(URL('default','SMS_Mail'))
+    return locals()
+
+from gluon.contenttype import contenttype
+import csv, cStringIO
+@auth.requires_login()
+def export_CSV():
+    export_status = request.args[1] + ' ' + request.args[2]#eg. /FB_leads/SMS/Pending = download from Fb_leads all with SMS Pending status
+    if (request.args[0]=="Fb_leads"):
+        if (request.args[1]=="None"):
+            status_query = db.Fb_leads.Final_Status == None
+        else:
+            status_query = db.Fb_leads.Final_Status == export_status
+    if (request.args[0]=="naukri_leads"):
+        if (request.args[1]=="None"):
+            status_query = db.naukri_leads.Final_Status == None
+        else:
+            status_query = db.naukri_leads.Final_Status == export_status
+    rows = db(status_query).select()
+    response.headers['Content-Type'] = contenttype('.csv')
+    response.headers['Content-disposition'] = 'attachment; filename=export_{}_{}.csv'.format(request.args[0],request.args[1])
+    s = cStringIO.StringIO()
+    rows.export_to_csv_file(s, delimiter=',', quotechar='"', quoting=csv.QUOTE_NONNUMERIC)
+    return s.getvalue()
+
+
+
+#########################################################################################################################
+# ---- API (example) -----
+@auth.requires_login()
+def api_get_user_email():
+    if not request.env.request_method == 'GET': raise HTTP(403)
+    return response.json({'status':'success', 'email':auth.user.email})
+
+# ---- Smart Grid (example) -----
+@auth.requires_membership('Admin') # can only be accessed by members of admin groupd
+def grid():
+    response.view = 'generic.html' # use a generic view
+    tablename = request.args(0)
+    if not tablename in db.tables: raise HTTP(403)
+    grid = SQLFORM.smartgrid(db[tablename], args=[tablename], deletable=False, editable=False)
+    return dict(grid=grid)
+
+# ---- Embedded wiki (example) ----
+def wiki():
+    auth.wikimenu() # add the wiki to the menu
+    return auth.wiki()
+
+# ---- Action for login/register/etc (required for auth) -----
+def user():
+    """
+    exposes:
+    http://..../[app]/default/user/login
+    http://..../[app]/default/user/logout
+    http://..../[app]/default/user/register
+    http://..../[app]/default/user/profile
+    http://..../[app]/default/user/retrieve_password
+    http://..../[app]/default/user/change_password
+    http://..../[app]/default/user/bulk_register
+    use @auth.requires_login()
+        @auth.requires_membership('group name')
+        @auth.requires_permission('read','table name',record_id)
+    to decorate functions that need access control
+    also notice there is http://..../[app]/appadmin/manage/auth to allow administrator to manage users
+    """
+    #auth.settings.login_next = URL('default','home')
+    return dict(form=auth())
+
+# ---- action to server uploaded static content (required) ---
+@cache.action()
+def download():
+    """
+    allows downloading of uploaded files
+    http://..../[app]/default/download/[filename]
+    """
+    return response.download(request, db)

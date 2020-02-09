@@ -1,0 +1,64 @@
+{{extend 'layout.html'}}
+<!DOCTYPE html>
+<!-- Create for Naukri leads -->
+<html lang="en">
+    <head>
+      <title>New Data</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+      <link href="{{=URL('static/css','sb-admin-2.min.css')}}" rel="stylesheet">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+      <script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
+      <script src="https://www.chartjs.org/samples/latest/utils.js"></script>
+      <style> body { background-color: #ffffff;}</style>
+    </head>
+    
+    <body>
+        <h1 class="h3 mb-2 text-gray-800">Create Fresh Leads  <a href="path/to/shopping/cart" class="btn btn-primary" aria-label="View 3 items in your shopping cart"><i class="fa fa-external-link-square" aria-hidden="true"></i>
+</a></h1>
+        <div class="container">
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" href="#description" role="tab" aria-controls="description" aria-selected="true">Fresh Leads</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"  href="#history" role="tab" aria-controls="history" aria-selected="false">Upload</a>
+            </li>
+          </ul>
+        </div>
+        <div class="card-body">
+           <div class="tab-content mt-3">
+            <div class="tab-pane active" id="description" role="tabpanel">
+              {{=form}}
+            </div>
+            <div class="tab-pane" id="history" role="tabpanel" aria-labelledby="Upload-tab">
+              {{=upload_form}}
+              <h7>
+                 <br>
+                  <br>
+                  <p><a href="{{=URL('static','2_Sample.csv')}}">Click here</a> to download sample CSV Upload format, fill in only your data, leave other spaces blank. <font color="red">PS Ensure date is YYYY-MM-DD format before uploading</font></p>
+                </h7>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+          $('#bologna-list a').on('click', function (e) {
+              e.preventDefault()
+                  $(this).tab('show')
+            })
+      </script>
+        <br>
+        <br>
+        <br>
+    </body>
+</html>

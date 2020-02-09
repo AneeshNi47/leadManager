@@ -1,0 +1,105 @@
+{{extend 'layout.html'}}
+<!DOCTYPE html>
+<!-- Create for Normal leads -->
+<html lang="en">
+    <head>
+      <title>Enrollments</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="{{=URL('static/css','sb-admin-2.min.css')}}" rel="stylesheet">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+      <script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
+      <script src="https://www.chartjs.org/samples/latest/utils.js"></script>
+      <style>
+            .error {
+                          font-size: 20px;
+                }
+     </style>
+    </head>
+    <body>
+        <div class="container">
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link" href="#description" role="tab" aria-controls="description" aria-selected="true">View Enrolled</a>
+            </li>
+              {{if auth.has_membership(1):}}
+            <li class="nav-item">
+              <a class="nav-link active"  href="#history" role="tab" aria-controls="history" aria-selected="false">New Entry</a>
+            </li>
+              {{pass}}
+          </ul>
+        </div>
+        <div class="card-body">
+           <div class="tab-content mt-3">
+            <div class="tab-pane" id="description" role="tabpanel">
+              <div class="table-responsive">
+			<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+				<thead>
+					<tr>
+					<th>S.No</th>
+					<th>Student Name</th>
+					<th>Enroll Date</th>
+                    <th>Batch</th>
+                    <th>Source</th>
+					{{if not auth.has_membership(1):}}<th>Enrolled By</th>{{pass}}
+                    {{if auth.has_membership(1):}}
+                        <th>Phone No.</th>
+                        <th>Actions</th>
+                    {{pass}}
+					</tr>
+				</thead>
+				<tbody>
+                    {{for enroll in enrolls:}}
+                    <tr>
+                        <th scope="row">{{=enroll.id}}</th>
+                        <td style="text-align: left;"><h6><a href="{{=URL('show_en',args=enroll.id)}}">{{=enroll.Student_name}}</a></h6></td>
+                        <td style="text-align: left;"><h6>{{=enroll.Enroll_Date}}</h6></td>
+                        <td style="text-align: left;"><h6>{{=enroll.Batch}}</h6></td>
+                        <td style="text-align: left;"><h6>{{=enroll.En_Source}}</h6></td>
+                        {{if not auth.has_membership(1):}}
+                         <td style="text-align: left;">
+                            {{for member in members:}}
+                                {{if member.id == enroll.created_by:}}
+                                    <h6>{{=member.first_name}} {{=member.last_name}}</h6>
+                                {{pass}}
+                             {{pass}}
+                         </td>
+                        {{elif auth.has_membership(1):}}
+                            <td style="text-align: left;"><h6>{{=enroll.Mobile}}</h6></td>
+                            <td>
+                                <button  id="deassign" type="button" class="btn btn-danger" style="text-align: center;" onclick="enrol_get(this.id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                <script> document.getElementById("delete_en").id = {{=enroll.id}}; </script>
+                            </td>
+                        {{pass}}
+                    </tr>
+                    {{pass}}
+                </tbody>
+			</table>
+		</div>
+         </div>
+               {{if auth.has_membership(1):}}
+                    <div class="tab-pane  active" id="history" role="tabpanel" aria-labelledby="Upload-tab">
+                        {{=form}}
+                    </div>
+               {{pass}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+          $('#bologna-list a').on('click', function (e) {
+              e.preventDefault()
+                  $(this).tab('show')
+            })
+      </script>
+        <br>
+        <br>
+        <br>
+    </body>
+</html>

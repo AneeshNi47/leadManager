@@ -1,0 +1,5699 @@
+timestamp: 2019-11-15T04:46:29.661309
+CREATE TABLE "auth_user"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "first_name" CHAR(128),
+    "last_name" CHAR(128),
+    "email" CHAR(512),
+    "password" CHAR(512),
+    "registration_key" CHAR(512),
+    "reset_password_key" CHAR(512),
+    "registration_id" CHAR(512)
+);
+success!
+timestamp: 2019-11-15T04:46:29.702393
+CREATE TABLE "auth_group"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "role" CHAR(512),
+    "description" TEXT
+);
+success!
+timestamp: 2019-11-15T04:46:29.735058
+CREATE TABLE "auth_membership"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "group_id" INTEGER REFERENCES "auth_group" ("id") ON DELETE CASCADE  
+);
+success!
+timestamp: 2019-11-15T04:46:29.765091
+CREATE TABLE "auth_permission"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "group_id" INTEGER REFERENCES "auth_group" ("id") ON DELETE CASCADE  ,
+    "name" CHAR(512),
+    "table_name" CHAR(512),
+    "record_id" INTEGER
+);
+success!
+timestamp: 2019-11-15T04:46:29.793169
+CREATE TABLE "auth_event"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "time_stamp" TIMESTAMP,
+    "client_ip" CHAR(512),
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "origin" CHAR(512),
+    "description" TEXT
+);
+success!
+timestamp: 2019-11-15T04:46:29.821705
+CREATE TABLE "auth_cas"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "created_on" TIMESTAMP,
+    "service" CHAR(512),
+    "ticket" CHAR(512),
+    "renew" CHAR(1)
+);
+success!
+timestamp: 2019-11-15T11:18:09.729778
+CREATE TABLE "leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "Title" CHAR(512),
+    "URL" CHAR(512)
+);
+success!
+DROP TABLE "leads";
+success!
+timestamp: 2019-11-19T04:40:47.304108
+CREATE TABLE "leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "Title" CHAR(512),
+    "URL" CHAR(512)
+);
+success!
+DROP TABLE "leads";
+success!
+timestamp: 2019-11-19T04:40:50.769309
+CREATE TABLE "leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "Title" CHAR(512),
+    "URL" CHAR(512)
+);
+success!
+DROP TABLE "leads";
+success!
+timestamp: 2019-11-19T04:41:50.790206
+CREATE TABLE "leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "Title" CHAR(512),
+    "URL" CHAR(512)
+);
+success!
+DROP TABLE "leads";
+success!
+timestamp: 2019-11-19T04:42:50.810511
+CREATE TABLE "leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "Title" CHAR(512),
+    "URL" CHAR(512)
+);
+success!
+DROP TABLE "leads";
+success!
+timestamp: 2019-11-19T04:43:50.756737
+CREATE TABLE "leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "Title" CHAR(512),
+    "URL" CHAR(512)
+);
+success!
+DROP TABLE "leads";
+success!
+timestamp: 2019-11-19T04:44:50.848712
+CREATE TABLE "leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "Title" CHAR(512),
+    "URL" CHAR(512)
+);
+success!
+DROP TABLE "leads";
+success!
+timestamp: 2019-11-19T04:45:50.844866
+CREATE TABLE "leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "Title" CHAR(512),
+    "URL" CHAR(512)
+);
+success!
+DROP TABLE "leads";
+success!
+timestamp: 2019-11-19T04:46:50.805088
+CREATE TABLE "leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "Title" CHAR(512),
+    "URL" CHAR(512)
+);
+success!
+DROP TABLE "leads";
+success!
+timestamp: 2019-11-19T04:47:50.794307
+CREATE TABLE "leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "Title" CHAR(512),
+    "URL" CHAR(512)
+);
+success!
+DROP TABLE "leads";
+success!
+timestamp: 2019-11-19T04:48:51.318746
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "created_time" CHAR(512),
+    "ad_id" CHAR(512),
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(512),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+success!
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-19T04:57:34.384428
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "created_time" TIMESTAMP,
+    "ad_id" TEXT,
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-19T04:57:35.130820
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "created_time" TIMESTAMP,
+    "ad_id" TEXT,
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-19T04:57:50.824305
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "created_time" TIMESTAMP,
+    "ad_id" TEXT,
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-19T04:58:51.317455
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "created_time" TIMESTAMP,
+    "ad_id" TEXT,
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-19T04:59:01.370152
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "created_time" TIMESTAMP,
+    "ad_id" TEXT,
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-19T04:59:43.321838
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "created_time" TIMESTAMP,
+    "ad_id" DOUBLE,
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-19T04:59:44.063605
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "created_time" TIMESTAMP,
+    "ad_id" DOUBLE,
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-19T04:59:50.820586
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "created_time" TIMESTAMP,
+    "ad_id" DOUBLE,
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-19T05:00:09.025626
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "created_time" TIMESTAMP,
+    "ad_id" DOUBLE,
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-19T05:04:28.720258
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "created_time" TIMESTAMP,
+    "ad_id" CHAR(512),
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-19T05:04:50.825136
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "created_time" TIMESTAMP,
+    "ad_id" CHAR(512),
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+timestamp: 2019-11-19T05:16:55.765803
+ALTER TABLE "Fb_leads" ADD "In_id" CHAR(512);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-19T05:16:59.941784
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "created_time" TIMESTAMP,
+    "ad_id" CHAR(512),
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-19T05:17:04.188978
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "created_time" TIMESTAMP,
+    "ad_id" CHAR(512),
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-19T05:17:13.727522
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "created_time" TIMESTAMP,
+    "ad_id" CHAR(512),
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-19T05:28:15.017140
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "created_time" TIMESTAMP,
+    "ad_id" CHAR(512),
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-19T05:28:51.491883
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "created_time" TIMESTAMP,
+    "ad_id" CHAR(512),
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-19T05:29:51.738809
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "created_time" TIMESTAMP,
+    "ad_id" CHAR(512),
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-19T05:30:52.313130
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "created_time" TIMESTAMP,
+    "ad_id" CHAR(512),
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-19T05:31:52.600106
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "created_time" TIMESTAMP,
+    "ad_id" CHAR(512),
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-19T05:32:52.829216
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "created_time" TIMESTAMP,
+    "ad_id" CHAR(512),
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-19T05:33:54.137371
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "created_time" TIMESTAMP,
+    "ad_id" CHAR(512),
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-19T05:34:53.544499
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "created_time" TIMESTAMP,
+    "ad_id" CHAR(512),
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-19T05:35:51.360551
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "created_time" TIMESTAMP,
+    "ad_id" CHAR(512),
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-19T05:36:02.478329
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "created_time" TIMESTAMP,
+    "ad_id" CHAR(512),
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-19T06:13:45.454861
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "created_time" TIMESTAMP,
+    "ad_id" CHAR(512),
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-19T06:13:51.394032
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "created_time" TIMESTAMP,
+    "ad_id" CHAR(512),
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-19T06:13:57.564220
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "created_time" TIMESTAMP,
+    "ad_id" CHAR(512),
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-24T17:00:15.406663
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "created_time" TIMESTAMP,
+    "ad_id" CHAR(512),
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-24T17:00:18.028838
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "created_time" TIMESTAMP,
+    "ad_id" CHAR(512),
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-24T17:00:41.457107
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "created_time" TIMESTAMP,
+    "ad_id" CHAR(512),
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-24T17:01:40.846198
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "created_time" TIMESTAMP,
+    "ad_id" CHAR(512),
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-24T17:02:40.661315
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "created_time" TIMESTAMP,
+    "ad_id" CHAR(512),
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-24T17:03:41.661621
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "created_time" TIMESTAMP,
+    "ad_id" CHAR(512),
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-24T17:04:27.473886
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "created_time" TIMESTAMP,
+    "ad_id" CHAR(512),
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-24T17:14:32.143685
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "created_time" TIMESTAMP,
+    "ad_id" CHAR(512),
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-24T17:14:40.645756
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "created_time" TIMESTAMP,
+    "ad_id" CHAR(512),
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-24T17:14:47.238707
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "created_time" TIMESTAMP,
+    "ad_id" CHAR(512),
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+timestamp: 2019-11-24T17:37:25.047117
+ALTER TABLE "Fb_leads" ADD "is_active" CHAR(1);
+timestamp: 2019-11-24T17:37:25.153434
+ALTER TABLE "Fb_leads" ADD "created_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ;
+timestamp: 2019-11-24T17:37:25.183624
+ALTER TABLE "Fb_leads" ADD "modified_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ;
+timestamp: 2019-11-24T17:37:25.265405
+ALTER TABLE "Fb_leads" ADD "created_on" TIMESTAMP;
+timestamp: 2019-11-24T17:37:25.287306
+ALTER TABLE "Fb_leads" ADD "modified_on" TIMESTAMP;
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-24T17:37:27.239783
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "ad_id" CHAR(512),
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512),
+    "is_active" CHAR(1),
+    "created_on" TIMESTAMP,
+    "created_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "modified_on" TIMESTAMP,
+    "modified_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-24T17:37:37.506619
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "ad_id" CHAR(512),
+    "ad_name" CHAR(512),
+    "adset_id" CHAR(512),
+    "adset_name" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "form_id" CHAR(512),
+    "form_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512),
+    "is_active" CHAR(1),
+    "created_on" TIMESTAMP,
+    "created_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "modified_on" TIMESTAMP,
+    "modified_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  
+);
+success!
+timestamp: 2019-11-24T18:01:41.708544
+ALTER TABLE "Fb_leads" ADD "Course" CHAR(1);
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-24T18:13:55.522216
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "Course" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512),
+    "is_active" CHAR(1),
+    "created_on" TIMESTAMP,
+    "created_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "modified_on" TIMESTAMP,
+    "modified_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-24T18:14:23.347956
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "Course" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512),
+    "is_active" CHAR(1),
+    "created_on" TIMESTAMP,
+    "created_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "modified_on" TIMESTAMP,
+    "modified_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-24T18:21:47.626470
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "Course" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512),
+    "is_active" CHAR(1),
+    "created_on" TIMESTAMP,
+    "created_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "modified_on" TIMESTAMP,
+    "modified_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-24T18:22:11.385389
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "Course" CHAR(1),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512),
+    "is_active" CHAR(1),
+    "created_on" TIMESTAMP,
+    "created_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "modified_on" TIMESTAMP,
+    "modified_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  
+);
+success!
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-24T18:23:40.873157
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "Course" CHAR(512),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512),
+    "is_active" CHAR(1),
+    "created_on" TIMESTAMP,
+    "created_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "modified_on" TIMESTAMP,
+    "modified_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-24T18:23:41.760257
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "Course" CHAR(512),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512),
+    "is_active" CHAR(1),
+    "created_on" TIMESTAMP,
+    "created_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "modified_on" TIMESTAMP,
+    "modified_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-24T18:23:43.049369
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "Course" CHAR(512),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512),
+    "is_active" CHAR(1),
+    "created_on" TIMESTAMP,
+    "created_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "modified_on" TIMESTAMP,
+    "modified_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-24T18:24:00.909796
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "Course" CHAR(512),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512),
+    "is_active" CHAR(1),
+    "created_on" TIMESTAMP,
+    "created_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "modified_on" TIMESTAMP,
+    "modified_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  
+);
+success!
+timestamp: 2019-11-25T07:22:22.793303
+ALTER TABLE "Fb_leads" ADD "Lead_Date" DATE;
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-25T07:22:24.580067
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "Lead_Date" DATE,
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "Course" CHAR(512),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-25T07:22:25.591828
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "Lead_Date" DATE,
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "Course" CHAR(512),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+DROP TABLE "Fb_leads";
+success!
+timestamp: 2019-11-25T07:22:50.845907
+CREATE TABLE "Fb_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "In_id" CHAR(512),
+    "Lead_Date" DATE,
+    "campaign_id" CHAR(512),
+    "campaign_name" CHAR(512),
+    "is_organic" CHAR(1),
+    "Course" CHAR(512),
+    "platform" CHAR(512),
+    "email" CHAR(512),
+    "full_name" CHAR(512),
+    "phone_number" CHAR(512),
+    "country" CHAR(512)
+);
+success!
+timestamp: 2019-11-27T14:39:18.746224
+CREATE TABLE "Upload_file"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "csv_file" CHAR(512)
+);
+success!
+DROP TABLE "Upload_file";
+success!
+timestamp: 2019-11-27T15:46:27.754379
+CREATE TABLE "Upload_file"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "csv_file" CHAR(512)
+);
+success!
+DROP TABLE "Upload_file";
+success!
+timestamp: 2019-11-27T15:47:19.751179
+CREATE TABLE "Upload_file"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "csv_file" CHAR(512)
+);
+success!
+DROP TABLE "Upload_file";
+success!
+timestamp: 2019-11-27T15:48:19.819420
+CREATE TABLE "Upload_file"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "csv_file" CHAR(512)
+);
+success!
+DROP TABLE "Upload_file";
+success!
+timestamp: 2019-11-27T15:49:18.903413
+CREATE TABLE "Upload_file"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "csv_file" CHAR(512)
+);
+success!
+DROP TABLE "Upload_file";
+success!
+timestamp: 2019-11-27T15:49:34.680156
+ALTER TABLE "Fb_leads" ADD "Assigned_to" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ;
+success!
+timestamp: 2019-12-03T04:53:36.586034
+CREATE TABLE `auth_user`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `first_name` VARCHAR(128),
+    `last_name` VARCHAR(128),
+    `email` VARCHAR(512),
+    `password` VARCHAR(512),
+    `registration_key` VARCHAR(512),
+    `reset_password_key` VARCHAR(512),
+    `registration_id` VARCHAR(512),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2019-12-03T04:53:36.667084
+CREATE TABLE `auth_group`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `role` VARCHAR(512),
+    `description` LONGTEXT,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2019-12-03T04:53:36.737802
+CREATE TABLE `auth_membership`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `user_id` INT  , INDEX `user_id__idx` (`user_id`), FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    `group_id` INT  , INDEX `group_id__idx` (`group_id`), FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`) ON DELETE CASCADE,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2019-12-03T04:53:36.796447
+CREATE TABLE `auth_permission`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `group_id` INT  , INDEX `group_id__idx` (`group_id`), FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`) ON DELETE CASCADE,
+    `name` VARCHAR(512),
+    `table_name` VARCHAR(512),
+    `record_id` INTEGER,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2019-12-03T04:53:36.870287
+CREATE TABLE `auth_event`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `time_stamp` DATETIME,
+    `client_ip` VARCHAR(512),
+    `user_id` INT  , INDEX `user_id__idx` (`user_id`), FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    `origin` VARCHAR(512),
+    `description` LONGTEXT,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2019-12-03T04:53:36.938379
+CREATE TABLE `auth_cas`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `user_id` INT  , INDEX `user_id__idx` (`user_id`), FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    `created_on` DATETIME,
+    `service` VARCHAR(512),
+    `ticket` VARCHAR(512),
+    `renew` CHAR(1),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2019-12-03T04:53:37.017301
+CREATE TABLE `Fb_leads`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `In_id` VARCHAR(512),
+    `Lead_Date` DATE,
+    `campaign_id` VARCHAR(512),
+    `campaign_name` VARCHAR(512),
+    `is_organic` CHAR(1),
+    `Course` VARCHAR(512),
+    `platform` VARCHAR(512),
+    `email` VARCHAR(512),
+    `full_name` VARCHAR(512),
+    `phone_number` VARCHAR(512),
+    `country` VARCHAR(512),
+    `Assigned_to` INT  , INDEX `Assigned_to__idx` (`Assigned_to`), FOREIGN KEY (`Assigned_to`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2019-12-03T10:22:18.995654
+ALTER TABLE `Fb_leads` DROP COLUMN `campaign_id`;
+success!
+timestamp: 2019-12-03T10:22:19.314598
+ALTER TABLE `Fb_leads` DROP COLUMN `is_organic`;
+success!
+timestamp: 2019-12-03T10:22:19.479625
+ALTER TABLE `Fb_leads` DROP COLUMN `In_id`;
+success!
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE `Fb_leads`;
+SET FOREIGN_KEY_CHECKS=1;
+success!
+timestamp: 2019-12-03T10:22:29.942609
+CREATE TABLE `Fb_leads`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `Lead_Date` DATE,
+    `campaign_name` VARCHAR(512),
+    `Course` VARCHAR(512),
+    `platform` VARCHAR(512),
+    `email` VARCHAR(512),
+    `full_name` VARCHAR(512),
+    `phone_number` VARCHAR(512),
+    `country` VARCHAR(512),
+    `Assigned_to` INT  , INDEX `Assigned_to__idx` (`Assigned_to`), FOREIGN KEY (`Assigned_to`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE `Fb_leads`;
+SET FOREIGN_KEY_CHECKS=1;
+success!
+timestamp: 2019-12-03T10:22:42.168833
+CREATE TABLE `Fb_leads`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `Lead_Date` DATE,
+    `campaign_name` VARCHAR(512),
+    `Course` VARCHAR(512),
+    `platform` VARCHAR(512),
+    `email` VARCHAR(512),
+    `full_name` VARCHAR(512),
+    `phone_number` VARCHAR(512),
+    `country` VARCHAR(512),
+    `Assigned_to` INT  , INDEX `Assigned_to__idx` (`Assigned_to`), FOREIGN KEY (`Assigned_to`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2019-12-19T14:24:07.980769
+CREATE TABLE `Lead_Status`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `lead_id` INT  , INDEX `lead_id__idx` (`lead_id`), FOREIGN KEY (`lead_id`) REFERENCES `Fb_leads` (`id`) ON DELETE CASCADE,
+    `status` VARCHAR(512),
+    `Update_Date` DATETIME,
+    `Updated_by` INT  , INDEX `Updated_by__idx` (`Updated_by`), FOREIGN KEY (`Updated_by`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2019-12-19T15:36:00.319941
+ALTER TABLE `Lead_Status` ADD `lead_id__tmp` INTEGER;
+success!
+UPDATE `Lead_Status` SET `lead_id__tmp`=`lead_id`;
+success!
+ALTER TABLE `Lead_Status` DROP COLUMN `lead_id`;
+success!
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE `Lead_Status`;
+SET FOREIGN_KEY_CHECKS=1;
+success!
+timestamp: 2019-12-19T15:37:27.075542
+CREATE TABLE `Lead_Status`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `lead_id` INT  , INDEX `lead_id__idx` (`lead_id`), FOREIGN KEY (`lead_id`) REFERENCES `Fb_leads` (`id`) ON DELETE CASCADE,
+    `status` VARCHAR(512),
+    `Update_Date` DATETIME,
+    `Updated_by` INT  , INDEX `Updated_by__idx` (`Updated_by`), FOREIGN KEY (`Updated_by`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE `Lead_Status`;
+SET FOREIGN_KEY_CHECKS=1;
+success!
+timestamp: 2019-12-19T15:37:43.431956
+CREATE TABLE `Lead_Status`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `lead_id` INTEGER,
+    `status` VARCHAR(512),
+    `Update_Date` DATETIME,
+    `Updated_by` INT  , INDEX `Updated_by__idx` (`Updated_by`), FOREIGN KEY (`Updated_by`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2019-12-19T16:12:02.110999
+ALTER TABLE `Fb_leads` ADD `Final_Status` VARCHAR(512);
+success!
+success!
+timestamp: 2019-12-19T16:12:02.557867
+ALTER TABLE `Lead_Status` ADD `Remarks` LONGTEXT;
+success!
+success!
+timestamp: 2020-01-01T05:59:50.816767
+CREATE TABLE `naukri_leads`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `Name` VARCHAR(512),
+    `Gender` VARCHAR(512),
+    `Industry` VARCHAR(512),
+    `Functional_Area` VARCHAR(512),
+    `Designation` VARCHAR(512),
+    `Company` VARCHAR(512),
+    `Experiance` VARCHAR(512),
+    `Present_Location` VARCHAR(512),
+    `City` VARCHAR(512),
+    `Nationality` VARCHAR(512),
+    `CV_Headline` LONGTEXT,
+    `Skills` LONGTEXT,
+    `Monthly_Salary` VARCHAR(512),
+    `Languages` VARCHAR(512),
+    `Highest_Qualification` LONGTEXT,
+    `Landline` VARCHAR(512),
+    `Mobile` VARCHAR(512),
+    `Email` VARCHAR(512),
+    `Last_Modified` VARCHAR(512),
+    `Photo` VARCHAR(512),
+    `Original_CV` VARCHAR(512),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2020-01-01T06:03:59.585615
+ALTER TABLE `naukri_leads` ADD `highest_qualification__tmp` VARCHAR(512);
+success!
+UPDATE `naukri_leads` SET `highest_qualification__tmp`=`Highest_Qualification`;
+success!
+ALTER TABLE `naukri_leads` DROP COLUMN `Highest_Qualification`;
+success!
+ALTER TABLE `naukri_leads` ADD `Highest_Qualification` VARCHAR(512);
+success!
+UPDATE `naukri_leads` SET `Highest_Qualification`=`highest_qualification__tmp`;
+success!
+ALTER TABLE `naukri_leads` DROP COLUMN `highest_qualification__tmp`;
+success!
+timestamp: 2020-01-01T06:04:00.172171
+ALTER TABLE `naukri_leads` ADD `languages__tmp` LONGTEXT;
+success!
+UPDATE `naukri_leads` SET `languages__tmp`=`Languages`;
+success!
+ALTER TABLE `naukri_leads` DROP COLUMN `Languages`;
+success!
+ALTER TABLE `naukri_leads` ADD `Languages` LONGTEXT;
+success!
+UPDATE `naukri_leads` SET `Languages`=`languages__tmp`;
+success!
+ALTER TABLE `naukri_leads` DROP COLUMN `languages__tmp`;
+success!
+success!
+timestamp: 2020-01-01T06:30:48.562165
+ALTER TABLE `Fb_leads` ADD `email__tmp` VARCHAR(512) UNIQUE;
+timestamp: 2020-01-01T06:31:23.150719
+ALTER TABLE `Fb_leads` ADD `email__tmp` VARCHAR(512) UNIQUE;
+timestamp: 2020-01-01T06:31:48.711628
+ALTER TABLE `Fb_leads` ADD `email__tmp` VARCHAR(512) UNIQUE;
+timestamp: 2020-01-01T06:32:08.718657
+ALTER TABLE `Fb_leads` ADD `email__tmp` VARCHAR(512) UNIQUE;
+timestamp: 2020-01-01T06:32:48.627797
+ALTER TABLE `Fb_leads` ADD `email__tmp` VARCHAR(512) UNIQUE;
+timestamp: 2020-01-01T06:33:24.279676
+ALTER TABLE `naukri_leads` ADD `email__tmp` VARCHAR(512) UNIQUE;
+timestamp: 2020-01-01T06:33:49.188136
+ALTER TABLE `naukri_leads` ADD `email__tmp` VARCHAR(512) UNIQUE;
+timestamp: 2020-01-01T06:34:06.614429
+ALTER TABLE `naukri_leads` ADD `email__tmp` VARCHAR(512) UNIQUE;
+timestamp: 2020-01-01T06:34:49.100823
+ALTER TABLE `naukri_leads` ADD `email__tmp` VARCHAR(512) UNIQUE;
+timestamp: 2020-01-01T06:34:57.013302
+ALTER TABLE `naukri_leads` ADD `email__tmp` VARCHAR(512) UNIQUE;
+timestamp: 2020-01-01T06:35:04.465800
+ALTER TABLE `naukri_leads` ADD `email__tmp` VARCHAR(512) UNIQUE;
+timestamp: 2020-01-01T06:35:55.428068
+ALTER TABLE `naukri_leads` ADD `email__tmp` VARCHAR(512) UNIQUE;
+timestamp: 2020-01-01T06:35:55.743779
+ALTER TABLE `naukri_leads` ADD `email__tmp` VARCHAR(512) UNIQUE;
+timestamp: 2020-01-01T06:37:44.637263
+ALTER TABLE `naukri_leads` ADD `email__tmp` VARCHAR(unique=True);
+timestamp: 2020-01-01T06:37:54.895111
+ALTER TABLE `naukri_leads` ADD `email__tmp` VARCHAR(unique=True);
+timestamp: 2020-01-01T06:38:11.213498
+ALTER TABLE `naukri_leads` ADD `email__tmp` VARCHAR(512) UNIQUE;
+timestamp: 2020-01-01T06:38:21.678064
+ALTER TABLE `naukri_leads` ADD `email__tmp` VARCHAR(512) UNIQUE;
+timestamp: 2020-01-01T07:22:54.545921
+ALTER TABLE `naukri_leads` ADD `Assigned_to` INT  , ADD INDEX `Assigned_to__idx` (`Assigned_to`), ADD FOREIGN KEY (`Assigned_to`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE;
+success!
+timestamp: 2020-01-01T07:22:54.776032
+ALTER TABLE `naukri_leads` ADD `Final_Status` VARCHAR(512);
+success!
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE `naukri_leads`;
+SET FOREIGN_KEY_CHECKS=1;
+success!
+timestamp: 2020-01-01T08:01:14.941287
+CREATE TABLE `naukri_leads`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `Name` VARCHAR(512),
+    `Gender` VARCHAR(512),
+    `Industry` VARCHAR(512),
+    `Functional_Area` VARCHAR(512),
+    `Designation` VARCHAR(512),
+    `Company` VARCHAR(512),
+    `Experiance` VARCHAR(512),
+    `Present_Location` VARCHAR(512),
+    `City` VARCHAR(512),
+    `Nationality` VARCHAR(512),
+    `CV_Headline` LONGTEXT,
+    `Skills` LONGTEXT,
+    `Monthly_Salary` VARCHAR(512),
+    `Languages` LONGTEXT,
+    `Highest_Qualification` VARCHAR(512),
+    `Landline` VARCHAR(512),
+    `Mobile` VARCHAR(512),
+    `Email` VARCHAR(512),
+    `Last_Modified` VARCHAR(512),
+    `Photo` VARCHAR(512),
+    `Original_CV` VARCHAR(512),
+    `Assigned_to` INT  , INDEX `Assigned_to__idx` (`Assigned_to`), FOREIGN KEY (`Assigned_to`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    `Final_Status` VARCHAR(512),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE `naukri_leads`;
+SET FOREIGN_KEY_CHECKS=1;
+success!
+timestamp: 2020-01-01T08:01:27.024229
+CREATE TABLE `naukri_leads`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `Name` VARCHAR(512),
+    `Gender` VARCHAR(512),
+    `Industry` VARCHAR(512),
+    `Functional_Area` VARCHAR(512),
+    `Designation` VARCHAR(512),
+    `Company` VARCHAR(512),
+    `Experiance` VARCHAR(512),
+    `Present_Location` VARCHAR(512),
+    `City` VARCHAR(512),
+    `Nationality` VARCHAR(512),
+    `CV_Headline` LONGTEXT,
+    `Skills` LONGTEXT,
+    `Monthly_Salary` VARCHAR(512),
+    `Languages` LONGTEXT,
+    `Highest_Qualification` VARCHAR(512),
+    `Landline` VARCHAR(512),
+    `Mobile` VARCHAR(512),
+    `Email` VARCHAR(512),
+    `Last_Modified` VARCHAR(512),
+    `Photo` VARCHAR(512),
+    `Original_CV` VARCHAR(512),
+    `Assigned_to` INT  , INDEX `Assigned_to__idx` (`Assigned_to`), FOREIGN KEY (`Assigned_to`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    `Final_Status` VARCHAR(512),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2020-01-01T08:05:51.066213
+ALTER TABLE `naukri_leads` ADD `languages__tmp` VARCHAR(512);
+success!
+UPDATE `naukri_leads` SET `languages__tmp`=`Languages`;
+success!
+ALTER TABLE `naukri_leads` DROP COLUMN `Languages`;
+success!
+ALTER TABLE `naukri_leads` ADD `Languages` VARCHAR(512);
+success!
+UPDATE `naukri_leads` SET `Languages`=`languages__tmp`;
+success!
+ALTER TABLE `naukri_leads` DROP COLUMN `languages__tmp`;
+success!
+success!
+timestamp: 2020-01-06T11:45:17.842000
+ALTER TABLE "Fb_leads" ADD "Final_Status" CHAR(512);
+success!
+timestamp: 2020-01-06T11:45:18.080000
+CREATE TABLE "Lead_Status"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "lead_id" INTEGER,
+    "status" CHAR(512),
+    "Update_Date" TIMESTAMP,
+    "Updated_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "Remarks" TEXT
+);
+success!
+timestamp: 2020-01-06T11:45:18.138000
+CREATE TABLE "naukri_leads"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "Name" CHAR(512),
+    "Gender" CHAR(512),
+    "Industry" CHAR(512),
+    "Functional_Area" CHAR(512),
+    "Designation" CHAR(512),
+    "Company" CHAR(512),
+    "Experiance" CHAR(512),
+    "Present_Location" CHAR(512),
+    "City" CHAR(512),
+    "Nationality" CHAR(512),
+    "CV_Headline" TEXT,
+    "Skills" TEXT,
+    "Monthly_Salary" CHAR(512),
+    "Languages" CHAR(512),
+    "Highest_Qualification" CHAR(512),
+    "Landline" CHAR(512),
+    "Mobile" CHAR(512),
+    "Email" CHAR(512),
+    "Last_Modified" CHAR(512),
+    "Photo" CHAR(512),
+    "Original_CV" CHAR(512),
+    "Assigned_to" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "Final_Status" CHAR(512)
+);
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+timestamp: 2020-01-06T11:58:45.359000
+CREATE TABLE "Reminder_GN"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "Glead_id" INTEGER,
+    "GRemind_Date" TIMESTAMP,
+    "GSet_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "GRemarks" TEXT
+);
+success!
+timestamp: 2020-01-06T11:58:45.438000
+CREATE TABLE "Reminder_FR"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "FRlead_id" INTEGER,
+    "FRRemind_Date" TIMESTAMP,
+    "FRSet_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "FRRemarks" TEXT
+);
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+DROP TABLE "Reminder_GN";
+success!
+success!
+timestamp: 2020-01-06T15:16:53.269000
+CREATE TABLE "Reminder_GN"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "Glead_id" INTEGER,
+    "GRemind_Date" DATE,
+    "GSet_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "GRemarks" TEXT
+);
+success!
+DROP TABLE "Reminder_GN";
+success!
+success!
+timestamp: 2020-01-06T15:17:01.775000
+CREATE TABLE "Reminder_GN"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "Glead_id" INTEGER,
+    "GRemind_Date" DATE,
+    "GSet_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "GRemarks" TEXT
+);
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+timestamp: 2020-01-06T16:20:06.889000
+ALTER TABLE "Reminder_GN" ADD "GRStatus" CHAR(512);
+success!
+timestamp: 2020-01-06T16:20:07.020000
+ALTER TABLE "Reminder_FR" ADD "FRStatus" CHAR(512);
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+timestamp: 2020-01-06T16:52:18.302000
+CREATE TABLE "app_log"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "Description" CHAR(512),
+    "Log_datetime" TIMESTAMP
+);
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+timestamp: 2020-01-06T17:36:12.421000
+CREATE TABLE "Enrollment"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "Enroll_Date" DATE,
+    "Student_name" CHAR(512),
+    "Course" CHAR(512),
+    "platform" CHAR(512),
+    "email" CHAR(512)
+);
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+timestamp: 2020-01-06T17:42:28.660000
+ALTER TABLE "Enrollment" ADD "Mobile" CHAR(512);
+timestamp: 2020-01-06T17:42:28.708000
+ALTER TABLE "Enrollment" ADD "Batch" CHAR(512);
+timestamp: 2020-01-06T17:42:28.755000
+ALTER TABLE "Enrollment" ADD "En_Source" CHAR(512);
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+timestamp: 2020-01-06T17:43:28.247000
+ALTER TABLE "Enrollment" ADD "Updated_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ;
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+timestamp: 2020-01-06T17:45:58.563000
+ALTER TABLE "Enrollment" ADD "modified_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ;
+timestamp: 2020-01-06T17:45:58.647000
+ALTER TABLE "Enrollment" ADD "is_active" CHAR(1);
+timestamp: 2020-01-06T17:45:58.703000
+ALTER TABLE "Enrollment" ADD "created_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ;
+timestamp: 2020-01-06T17:45:58.792000
+ALTER TABLE "Enrollment" ADD "created_on" TIMESTAMP;
+timestamp: 2020-01-06T17:45:58.818000
+ALTER TABLE "Enrollment" ADD "modified_on" TIMESTAMP;
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+timestamp: 2020-01-07T05:35:31.192459
+CREATE TABLE `Reminder_GN`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `Glead_id` INTEGER,
+    `GRemind_Date` DATE,
+    `GSet_by` INT  , INDEX `GSet_by__idx` (`GSet_by`), FOREIGN KEY (`GSet_by`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    `GRemarks` LONGTEXT,
+    `GRStatus` VARCHAR(512),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2020-01-07T05:35:31.329396
+CREATE TABLE `Reminder_FR`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `FRlead_id` INTEGER,
+    `FRRemind_Date` DATE,
+    `FRSet_by` INT  , INDEX `FRSet_by__idx` (`FRSet_by`), FOREIGN KEY (`FRSet_by`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    `FRRemarks` LONGTEXT,
+    `FRStatus` VARCHAR(512),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2020-01-07T05:35:31.411436
+CREATE TABLE `app_log`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `Description` VARCHAR(512),
+    `Log_datetime` DATETIME,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2020-01-07T05:35:31.509157
+CREATE TABLE `Enrollment`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `Enroll_Date` DATE,
+    `Student_name` VARCHAR(512),
+    `Mobile` VARCHAR(512),
+    `Email` VARCHAR(512),
+    `Batch` VARCHAR(512),
+    `En_Source` VARCHAR(512),
+    `is_active` CHAR(1),
+    `created_on` DATETIME,
+    `created_by` INT  , INDEX `created_by__idx` (`created_by`), FOREIGN KEY (`created_by`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    `modified_on` DATETIME,
+    `modified_by` INT  , INDEX `modified_by__idx` (`modified_by`), FOREIGN KEY (`modified_by`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2020-01-07T05:45:48.748020
+CREATE TABLE `auth_user`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `first_name` VARCHAR(128),
+    `last_name` VARCHAR(128),
+    `email` VARCHAR(512),
+    `password` VARCHAR(512),
+    `registration_key` VARCHAR(512),
+    `reset_password_key` VARCHAR(512),
+    `registration_id` VARCHAR(512),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2020-01-07T05:45:48.802333
+CREATE TABLE `auth_group`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `role` VARCHAR(512),
+    `description` LONGTEXT,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2020-01-07T05:45:48.843185
+CREATE TABLE `auth_membership`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `user_id` INT  , INDEX `user_id__idx` (`user_id`), FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    `group_id` INT  , INDEX `group_id__idx` (`group_id`), FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`) ON DELETE CASCADE,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2020-01-07T05:45:48.899551
+CREATE TABLE `auth_permission`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `group_id` INT  , INDEX `group_id__idx` (`group_id`), FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`) ON DELETE CASCADE,
+    `name` VARCHAR(512),
+    `table_name` VARCHAR(512),
+    `record_id` INTEGER,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2020-01-07T05:45:48.956451
+CREATE TABLE `auth_event`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `time_stamp` DATETIME,
+    `client_ip` VARCHAR(512),
+    `user_id` INT  , INDEX `user_id__idx` (`user_id`), FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    `origin` VARCHAR(512),
+    `description` LONGTEXT,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2020-01-07T05:45:49.004978
+CREATE TABLE `auth_cas`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `user_id` INT  , INDEX `user_id__idx` (`user_id`), FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    `created_on` DATETIME,
+    `service` VARCHAR(512),
+    `ticket` VARCHAR(512),
+    `renew` CHAR(1),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2020-01-07T05:45:49.054343
+CREATE TABLE `Reminder_GN`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `Glead_id` INTEGER,
+    `GRemind_Date` DATE,
+    `GSet_by` INT  , INDEX `GSet_by__idx` (`GSet_by`), FOREIGN KEY (`GSet_by`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    `GRemarks` LONGTEXT,
+    `GRStatus` VARCHAR(512),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2020-01-07T05:45:49.123449
+CREATE TABLE `Reminder_FR`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `FRlead_id` INTEGER,
+    `FRRemind_Date` DATE,
+    `FRSet_by` INT  , INDEX `FRSet_by__idx` (`FRSet_by`), FOREIGN KEY (`FRSet_by`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    `FRRemarks` LONGTEXT,
+    `FRStatus` VARCHAR(512),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2020-01-07T05:45:49.179334
+CREATE TABLE `Lead_Status`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `lead_id` INTEGER,
+    `status` VARCHAR(512),
+    `Update_Date` DATETIME,
+    `Updated_by` INT  , INDEX `Updated_by__idx` (`Updated_by`), FOREIGN KEY (`Updated_by`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    `Remarks` LONGTEXT,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2020-01-07T05:45:49.227782
+CREATE TABLE `app_log`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `Description` VARCHAR(512),
+    `Log_datetime` DATETIME,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2020-01-07T05:45:49.272081
+CREATE TABLE `Fb_leads`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `Lead_Date` DATE,
+    `campaign_name` VARCHAR(512),
+    `Course` VARCHAR(512),
+    `platform` VARCHAR(512),
+    `email` VARCHAR(512),
+    `full_name` VARCHAR(512),
+    `phone_number` VARCHAR(512),
+    `country` VARCHAR(512),
+    `Assigned_to` INT  , INDEX `Assigned_to__idx` (`Assigned_to`), FOREIGN KEY (`Assigned_to`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    `Final_Status` VARCHAR(512),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2020-01-07T05:45:49.329122
+CREATE TABLE `Enrollment`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `Enroll_Date` DATE,
+    `Student_name` VARCHAR(512),
+    `Mobile` VARCHAR(512),
+    `Email` VARCHAR(512),
+    `Batch` VARCHAR(512),
+    `En_Source` VARCHAR(512),
+    `is_active` CHAR(1),
+    `created_on` DATETIME,
+    `created_by` INT  , INDEX `created_by__idx` (`created_by`), FOREIGN KEY (`created_by`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    `modified_on` DATETIME,
+    `modified_by` INT  , INDEX `modified_by__idx` (`modified_by`), FOREIGN KEY (`modified_by`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2020-01-07T05:45:49.386333
+CREATE TABLE `naukri_leads`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `Name` VARCHAR(512),
+    `Gender` VARCHAR(512),
+    `Industry` VARCHAR(512),
+    `Functional_Area` VARCHAR(512),
+    `Designation` VARCHAR(512),
+    `Company` VARCHAR(512),
+    `Experiance` VARCHAR(512),
+    `Present_Location` VARCHAR(512),
+    `City` VARCHAR(512),
+    `Nationality` VARCHAR(512),
+    `CV_Headline` LONGTEXT,
+    `Skills` LONGTEXT,
+    `Monthly_Salary` VARCHAR(512),
+    `Languages` VARCHAR(512),
+    `Highest_Qualification` VARCHAR(512),
+    `Landline` VARCHAR(512),
+    `Mobile` VARCHAR(512),
+    `Email` VARCHAR(512),
+    `Last_Modified` VARCHAR(512),
+    `Photo` VARCHAR(512),
+    `Original_CV` VARCHAR(512),
+    `Assigned_to` INT  , INDEX `Assigned_to__idx` (`Assigned_to`), FOREIGN KEY (`Assigned_to`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    `Final_Status` VARCHAR(512),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2020-01-08T07:03:20.917193
+CREATE TABLE `notifications`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `set_date` DATETIME,
+    `Message` VARCHAR(512),
+    `Given_by` INT  , INDEX `Given_by__idx` (`Given_by`), FOREIGN KEY (`Given_by`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    `Given_to` INT  , INDEX `Given_to__idx` (`Given_to`), FOREIGN KEY (`Given_to`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    `Status` VARCHAR(512),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE `Reminder_FR`;
+SET FOREIGN_KEY_CHECKS=1;
+success!
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE `Reminder_GN`;
+SET FOREIGN_KEY_CHECKS=1;
+success!
+timestamp: 2020-01-08T07:15:07.474252
+ALTER TABLE `notifications` ADD `lead_id` INTEGER;
+success!
+timestamp: 2020-01-08T07:15:09.643459
+CREATE TABLE `Reminder_GN`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `Glead_id` INTEGER,
+    `GRemind_Date` DATE,
+    `GSet_by` INT  , INDEX `GSet_by__idx` (`GSet_by`), FOREIGN KEY (`GSet_by`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    `GRemarks` LONGTEXT,
+    `GRStatus` VARCHAR(512),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2020-01-08T07:15:09.688988
+CREATE TABLE `Reminder_FR`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `FRlead_id` INTEGER,
+    `FRRemind_Date` DATE,
+    `FRSet_by` INT  , INDEX `FRSet_by__idx` (`FRSet_by`), FOREIGN KEY (`FRSet_by`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    `FRRemarks` LONGTEXT,
+    `FRStatus` VARCHAR(512),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE `Reminder_FR`;
+SET FOREIGN_KEY_CHECKS=1;
+success!
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE `Reminder_GN`;
+SET FOREIGN_KEY_CHECKS=1;
+success!
+timestamp: 2020-01-08T07:15:20.508069
+CREATE TABLE `Reminder_GN`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `Glead_id` INTEGER,
+    `GRemind_Date` DATE,
+    `GSet_by` INT  , INDEX `GSet_by__idx` (`GSet_by`), FOREIGN KEY (`GSet_by`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    `GRemarks` LONGTEXT,
+    `GRStatus` VARCHAR(512),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2020-01-08T07:15:20.554396
+CREATE TABLE `Reminder_FR`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `FRlead_id` INTEGER,
+    `FRRemind_Date` DATE,
+    `FRSet_by` INT  , INDEX `FRSet_by__idx` (`FRSet_by`), FOREIGN KEY (`FRSet_by`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    `FRRemarks` LONGTEXT,
+    `FRStatus` VARCHAR(512),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE `Reminder_FR`;
+SET FOREIGN_KEY_CHECKS=1;
+success!
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE `Reminder_GN`;
+SET FOREIGN_KEY_CHECKS=1;
+success!
+timestamp: 2020-01-08T13:21:07.571488
+ALTER TABLE `naukri_leads` ADD `last_modified__tmp` DATE;
+success!
+UPDATE `naukri_leads` SET `last_modified__tmp`=`Last_Modified`;
+success!
+ALTER TABLE `naukri_leads` DROP COLUMN `Last_Modified`;
+success!
+ALTER TABLE `naukri_leads` ADD `Last_Modified` DATE;
+success!
+UPDATE `naukri_leads` SET `Last_Modified`=`last_modified__tmp`;
+success!
+ALTER TABLE `naukri_leads` DROP COLUMN `last_modified__tmp`;
+success!
+success!
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE `naukri_leads`;
+SET FOREIGN_KEY_CHECKS=1;
+success!
+timestamp: 2020-01-08T13:21:58.291403
+CREATE TABLE `naukri_leads`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `Name` VARCHAR(512),
+    `Gender` VARCHAR(512),
+    `Industry` VARCHAR(512),
+    `Functional_Area` VARCHAR(512),
+    `Designation` VARCHAR(512),
+    `Company` VARCHAR(512),
+    `Experiance` VARCHAR(512),
+    `Present_Location` VARCHAR(512),
+    `City` VARCHAR(512),
+    `Nationality` VARCHAR(512),
+    `CV_Headline` LONGTEXT,
+    `Skills` LONGTEXT,
+    `Monthly_Salary` VARCHAR(512),
+    `Languages` VARCHAR(512),
+    `Highest_Qualification` VARCHAR(512),
+    `Landline` VARCHAR(512),
+    `Mobile` VARCHAR(512),
+    `Email` VARCHAR(512),
+    `Last_Modified` DATE,
+    `Photo` VARCHAR(512),
+    `Original_CV` VARCHAR(512),
+    `Assigned_to` INT  , INDEX `Assigned_to__idx` (`Assigned_to`), FOREIGN KEY (`Assigned_to`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    `Final_Status` VARCHAR(512),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE `naukri_leads`;
+SET FOREIGN_KEY_CHECKS=1;
+success!
+timestamp: 2020-01-08T13:22:10.466524
+CREATE TABLE `naukri_leads`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `Name` VARCHAR(512),
+    `Gender` VARCHAR(512),
+    `Industry` VARCHAR(512),
+    `Functional_Area` VARCHAR(512),
+    `Designation` VARCHAR(512),
+    `Company` VARCHAR(512),
+    `Experiance` VARCHAR(512),
+    `Present_Location` VARCHAR(512),
+    `City` VARCHAR(512),
+    `Nationality` VARCHAR(512),
+    `CV_Headline` LONGTEXT,
+    `Skills` LONGTEXT,
+    `Monthly_Salary` VARCHAR(512),
+    `Languages` VARCHAR(512),
+    `Highest_Qualification` VARCHAR(512),
+    `Landline` VARCHAR(512),
+    `Mobile` VARCHAR(512),
+    `Email` VARCHAR(512),
+    `Last_Modified` DATE,
+    `Photo` VARCHAR(512),
+    `Original_CV` VARCHAR(512),
+    `Assigned_to` INT  , INDEX `Assigned_to__idx` (`Assigned_to`), FOREIGN KEY (`Assigned_to`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    `Final_Status` VARCHAR(512),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2020-01-08T13:52:07.467071
+ALTER TABLE `notifications` ADD `type` VARCHAR(512);
+success!
+success!
+timestamp: 2020-01-08T13:54:07.775304
+ALTER TABLE `notifications` ADD `notif_type` VARCHAR(512);
+success!
+timestamp: 2020-01-08T13:54:07.917985
+ALTER TABLE `notifications` DROP COLUMN `type`;
+success!
+timestamp: 2020-01-08T15:00:08.021244
+ALTER TABLE `notifications` ADD `notif_use` VARCHAR(512);
+success!
+timestamp: 2020-01-08T15:00:08.189109
+ALTER TABLE `notifications` DROP COLUMN `notif_type`;
+success!
+timestamp: 2020-01-09T07:28:37.975257
+ALTER TABLE `Lead_Status` ADD `lead_type` VARCHAR(512);
+success!
+success!
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE `naukri_leads`;
+SET FOREIGN_KEY_CHECKS=1;
+success!
+timestamp: 2020-01-14T09:12:23.684899
+CREATE TABLE `naukri_leads`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `Name` VARCHAR(512),
+    `Gender` VARCHAR(512),
+    `Industry` VARCHAR(512),
+    `Functional_Area` VARCHAR(512),
+    `Designation` VARCHAR(512),
+    `Company` VARCHAR(512),
+    `Experiance` VARCHAR(512),
+    `Present_Location` VARCHAR(512),
+    `City` VARCHAR(512),
+    `Nationality` VARCHAR(512),
+    `CV_Headline` LONGTEXT,
+    `Skills` LONGTEXT,
+    `Monthly_Salary` VARCHAR(512),
+    `Languages` VARCHAR(512),
+    `Highest_Qualification` VARCHAR(512),
+    `Landline` VARCHAR(512),
+    `Mobile` VARCHAR(512),
+    `Email` VARCHAR(512),
+    `Last_Modified` DATE,
+    `Photo` VARCHAR(512),
+    `Original_CV` VARCHAR(512),
+    `Assigned_to` INT  , INDEX `Assigned_to__idx` (`Assigned_to`), FOREIGN KEY (`Assigned_to`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    `Final_Status` VARCHAR(512),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE `naukri_leads`;
+SET FOREIGN_KEY_CHECKS=1;
+success!
+timestamp: 2020-01-14T09:12:31.817323
+CREATE TABLE `naukri_leads`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `Name` VARCHAR(512),
+    `Gender` VARCHAR(512),
+    `Industry` VARCHAR(512),
+    `Functional_Area` VARCHAR(512),
+    `Designation` VARCHAR(512),
+    `Company` VARCHAR(512),
+    `Experiance` VARCHAR(512),
+    `Present_Location` VARCHAR(512),
+    `City` VARCHAR(512),
+    `Nationality` VARCHAR(512),
+    `CV_Headline` LONGTEXT,
+    `Skills` LONGTEXT,
+    `Monthly_Salary` VARCHAR(512),
+    `Languages` VARCHAR(512),
+    `Highest_Qualification` VARCHAR(512),
+    `Landline` VARCHAR(512),
+    `Mobile` VARCHAR(512),
+    `Email` VARCHAR(512),
+    `Last_Modified` DATE,
+    `Photo` VARCHAR(512),
+    `Original_CV` VARCHAR(512),
+    `Assigned_to` INT  , INDEX `Assigned_to__idx` (`Assigned_to`), FOREIGN KEY (`Assigned_to`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    `Final_Status` VARCHAR(512),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE `naukri_leads`;
+SET FOREIGN_KEY_CHECKS=1;
+success!
+timestamp: 2020-01-15T09:23:54.808277
+CREATE TABLE `naukri_leads`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `Name` VARCHAR(512),
+    `Gender` VARCHAR(512),
+    `Industry` VARCHAR(512),
+    `Functional_Area` VARCHAR(512),
+    `Designation` VARCHAR(512),
+    `Company` VARCHAR(512),
+    `Experiance` VARCHAR(512),
+    `Present_Location` VARCHAR(512),
+    `City` VARCHAR(512),
+    `Nationality` VARCHAR(512),
+    `CV_Headline` LONGTEXT,
+    `Skills` LONGTEXT,
+    `Monthly_Salary` VARCHAR(512),
+    `Languages` VARCHAR(512),
+    `Highest_Qualification` VARCHAR(512),
+    `Landline` VARCHAR(512),
+    `Mobile` VARCHAR(512),
+    `Email` VARCHAR(512),
+    `Last_Modified` DATE,
+    `Photo` VARCHAR(512),
+    `Original_CV` VARCHAR(512),
+    `Assigned_to` INT  , INDEX `Assigned_to__idx` (`Assigned_to`), FOREIGN KEY (`Assigned_to`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    `Final_Status` VARCHAR(512),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE `naukri_leads`;
+SET FOREIGN_KEY_CHECKS=1;
+success!
+timestamp: 2020-01-15T09:24:01.760007
+CREATE TABLE `naukri_leads`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `Name` VARCHAR(512),
+    `Gender` VARCHAR(512),
+    `Industry` VARCHAR(512),
+    `Functional_Area` VARCHAR(512),
+    `Designation` VARCHAR(512),
+    `Company` VARCHAR(512),
+    `Experiance` VARCHAR(512),
+    `Present_Location` VARCHAR(512),
+    `City` VARCHAR(512),
+    `Nationality` VARCHAR(512),
+    `CV_Headline` LONGTEXT,
+    `Skills` LONGTEXT,
+    `Monthly_Salary` VARCHAR(512),
+    `Languages` VARCHAR(512),
+    `Highest_Qualification` VARCHAR(512),
+    `Landline` VARCHAR(512),
+    `Mobile` VARCHAR(512),
+    `Email` VARCHAR(512),
+    `Last_Modified` DATE,
+    `Photo` VARCHAR(512),
+    `Original_CV` VARCHAR(512),
+    `Assigned_to` INT  , INDEX `Assigned_to__idx` (`Assigned_to`), FOREIGN KEY (`Assigned_to`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    `Final_Status` VARCHAR(512),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE `naukri_leads`;
+SET FOREIGN_KEY_CHECKS=1;
+success!
+timestamp: 2020-01-15T09:37:14.687987
+CREATE TABLE `naukri_leads`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `Name` VARCHAR(512),
+    `Gender` VARCHAR(512),
+    `Industry` VARCHAR(512),
+    `Functional_Area` VARCHAR(512),
+    `Designation` VARCHAR(512),
+    `Company` VARCHAR(512),
+    `Experiance` VARCHAR(512),
+    `Present_Location` VARCHAR(512),
+    `City` VARCHAR(512),
+    `Nationality` VARCHAR(512),
+    `CV_Headline` LONGTEXT,
+    `Skills` LONGTEXT,
+    `Monthly_Salary` VARCHAR(512),
+    `Languages` VARCHAR(512),
+    `Highest_Qualification` VARCHAR(512),
+    `Landline` VARCHAR(512),
+    `Mobile` VARCHAR(512),
+    `Email` VARCHAR(512),
+    `Last_Modified` DATE,
+    `Photo` VARCHAR(512),
+    `Original_CV` VARCHAR(512),
+    `Assigned_to` INT  , INDEX `Assigned_to__idx` (`Assigned_to`), FOREIGN KEY (`Assigned_to`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    `Final_Status` VARCHAR(512),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE `naukri_leads`;
+SET FOREIGN_KEY_CHECKS=1;
+success!
+timestamp: 2020-01-15T09:37:15.888772
+CREATE TABLE `naukri_leads`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `Name` VARCHAR(512),
+    `Gender` VARCHAR(512),
+    `Industry` VARCHAR(512),
+    `Functional_Area` VARCHAR(512),
+    `Designation` VARCHAR(512),
+    `Company` VARCHAR(512),
+    `Experiance` VARCHAR(512),
+    `Present_Location` VARCHAR(512),
+    `City` VARCHAR(512),
+    `Nationality` VARCHAR(512),
+    `CV_Headline` LONGTEXT,
+    `Skills` LONGTEXT,
+    `Monthly_Salary` VARCHAR(512),
+    `Languages` VARCHAR(512),
+    `Highest_Qualification` VARCHAR(512),
+    `Landline` VARCHAR(512),
+    `Mobile` VARCHAR(512),
+    `Email` VARCHAR(512),
+    `Last_Modified` DATE,
+    `Photo` VARCHAR(512),
+    `Original_CV` VARCHAR(512),
+    `Assigned_to` INT  , INDEX `Assigned_to__idx` (`Assigned_to`), FOREIGN KEY (`Assigned_to`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    `Final_Status` VARCHAR(512),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE `naukri_leads`;
+SET FOREIGN_KEY_CHECKS=1;
+success!
+timestamp: 2020-01-15T09:37:17.525856
+CREATE TABLE `naukri_leads`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `Name` VARCHAR(512),
+    `Gender` VARCHAR(512),
+    `Industry` VARCHAR(512),
+    `Functional_Area` VARCHAR(512),
+    `Designation` VARCHAR(512),
+    `Company` VARCHAR(512),
+    `Experiance` VARCHAR(512),
+    `Present_Location` VARCHAR(512),
+    `City` VARCHAR(512),
+    `Nationality` VARCHAR(512),
+    `CV_Headline` LONGTEXT,
+    `Skills` LONGTEXT,
+    `Monthly_Salary` VARCHAR(512),
+    `Languages` VARCHAR(512),
+    `Highest_Qualification` VARCHAR(512),
+    `Landline` VARCHAR(512),
+    `Mobile` VARCHAR(512),
+    `Email` VARCHAR(512),
+    `Last_Modified` DATE,
+    `Photo` VARCHAR(512),
+    `Original_CV` VARCHAR(512),
+    `Assigned_to` INT  , INDEX `Assigned_to__idx` (`Assigned_to`), FOREIGN KEY (`Assigned_to`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    `Final_Status` VARCHAR(512),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE `naukri_leads`;
+SET FOREIGN_KEY_CHECKS=1;
+success!
+timestamp: 2020-01-15T09:38:14.753156
+CREATE TABLE `naukri_leads`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `Name` VARCHAR(512),
+    `Gender` VARCHAR(512),
+    `Industry` VARCHAR(512),
+    `Functional_Area` VARCHAR(512),
+    `Designation` VARCHAR(512),
+    `Company` VARCHAR(512),
+    `Experiance` VARCHAR(512),
+    `Present_Location` VARCHAR(512),
+    `City` VARCHAR(512),
+    `Nationality` VARCHAR(512),
+    `CV_Headline` LONGTEXT,
+    `Skills` LONGTEXT,
+    `Monthly_Salary` VARCHAR(512),
+    `Languages` VARCHAR(512),
+    `Highest_Qualification` VARCHAR(512),
+    `Landline` VARCHAR(512),
+    `Mobile` VARCHAR(512),
+    `Email` VARCHAR(512),
+    `Last_Modified` DATE,
+    `Photo` VARCHAR(512),
+    `Original_CV` VARCHAR(512),
+    `Assigned_to` INT  , INDEX `Assigned_to__idx` (`Assigned_to`), FOREIGN KEY (`Assigned_to`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    `Final_Status` VARCHAR(512),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE `naukri_leads`;
+SET FOREIGN_KEY_CHECKS=1;
+success!
+timestamp: 2020-01-15T11:25:28.683881
+CREATE TABLE `naukri_leads`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `Name` VARCHAR(512),
+    `Gender` VARCHAR(512),
+    `Industry` VARCHAR(512),
+    `Functional_Area` VARCHAR(512),
+    `Designation` VARCHAR(512),
+    `Company` VARCHAR(512),
+    `Experiance` VARCHAR(512),
+    `Present_Location` VARCHAR(512),
+    `City` VARCHAR(512),
+    `Nationality` VARCHAR(512),
+    `CV_Headline` LONGTEXT,
+    `Skills` LONGTEXT,
+    `Monthly_Salary` VARCHAR(512),
+    `Languages` VARCHAR(512),
+    `Highest_Qualification` VARCHAR(512),
+    `Landline` VARCHAR(512),
+    `Mobile` VARCHAR(512),
+    `Email` VARCHAR(512),
+    `Last_Modified` DATE,
+    `Photo` VARCHAR(512),
+    `Original_CV` VARCHAR(512),
+    `Assigned_to` INT  , INDEX `Assigned_to__idx` (`Assigned_to`), FOREIGN KEY (`Assigned_to`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    `Final_Status` VARCHAR(512),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE `naukri_leads`;
+SET FOREIGN_KEY_CHECKS=1;
+success!
+timestamp: 2020-01-15T11:25:36.975923
+CREATE TABLE `naukri_leads`(
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `Name` VARCHAR(512),
+    `Gender` VARCHAR(512),
+    `Industry` VARCHAR(512),
+    `Functional_Area` VARCHAR(512),
+    `Designation` VARCHAR(512),
+    `Company` VARCHAR(512),
+    `Experiance` VARCHAR(512),
+    `Present_Location` VARCHAR(512),
+    `City` VARCHAR(512),
+    `Nationality` VARCHAR(512),
+    `CV_Headline` LONGTEXT,
+    `Skills` LONGTEXT,
+    `Monthly_Salary` VARCHAR(512),
+    `Languages` VARCHAR(512),
+    `Highest_Qualification` VARCHAR(512),
+    `Landline` VARCHAR(512),
+    `Mobile` VARCHAR(512),
+    `Email` VARCHAR(512),
+    `Last_Modified` DATE,
+    `Photo` VARCHAR(512),
+    `Original_CV` VARCHAR(512),
+    `Assigned_to` INT  , INDEX `Assigned_to__idx` (`Assigned_to`), FOREIGN KEY (`Assigned_to`) REFERENCES `auth_user` (`id`) ON DELETE CASCADE,
+    `Final_Status` VARCHAR(512),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!

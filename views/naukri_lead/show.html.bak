@@ -1,0 +1,155 @@
+{{extend 'layout.html'}}
+<!DOCTYPE html>
+<!-- Create for Naukri leads -->
+<html lang="en">
+    <head>
+      <title>Lead Managment Application</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+      <link href="{{=URL('static/css','sb-admin-2.min.css')}}" rel="stylesheet">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+      <script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
+      <script src="https://www.chartjs.org/samples/latest/utils.js"></script>
+      <style> body { background-color: #ffffff;}</style>
+    </head>
+    
+    <body>
+        <h1 class="h3 mb-2 text-gray-800"></h1>
+   <div class="container">
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="card">
+        <div class="card-header">
+		<h5 class="m-0 font-weight-bold text-primary">{{=post.Name}}  <a href="path/to/shopping/cart" class="btn btn-primary" aria-label="View 3 items in your shopping cart"><i class="fa fa-external-link-square" aria-hidden="true" align="right"></i>
+            </a></h5>
+         <p class="text-muted"><small>{{=post.CV_Headline}}</small></p>
+         <p class="text-muted"><sup><b>Profile Last Modified: </b><i>{{=post.Last_Modified}}</sup></i></p>
+          <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" href="#description" role="tab" aria-controls="description" aria-selected="true">Occupational Info</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"  href="#history" role="tab" aria-controls="history" aria-selected="false">Personal Info</a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link"  href="#history2" role="tab" aria-controls="history2" aria-selected="false">Contact</a>
+            </li>
+          </ul>
+        </div>
+        <div class="card-body">
+           <div class="tab-content mt-3">
+            <div class="tab-pane active" id="description" role="tabpanel">
+              <div class="card-body">
+         <div class="table-responsive">
+             <table class="table table-bordered" id="dataTable" cellspacing="0">
+                 <tbody>
+                 <tr>
+                     <td><b><h6>Company: </h6></b><p class="text-muted">{{=post.Company}}</p></td>
+                     <td><b><h6>Designation: </h6></b><p class="text-muted">{{=post.Designation}}</p></td>
+                     <td><b><h6>Functional Area: </h6></b><p class="text-muted"> {{=post.Functional_Area}}</p></td>
+                 </tr>
+                 <tr>
+                     <td><h6>Monthly Salary: </h6></b><p class="text-muted">{{=post.Monthly_Salary}}</p></td>
+                     <td><b><h6>Industry: </h6></b><p class="text-muted">{{=post.Industry}}</p></td>
+                     <td><b><h6>Location: </h6></b><p class="text-muted">{{=post.Present_Location}}</p></td>
+                  </tr>
+                  <tr>
+                     <td><b><h6>City: </h6></b><p class="text-muted">{{=post.City}}</p></td>
+                     <td><b><h6>Experiance: </h6></b><p class="text-muted">{{=post.Experiance}}</p></td>
+                 </tr>
+                 </tbody>
+             </table>
+             <a class="btn btn-primary" href="{{=URL('view')}}" role="button">BACK</a>
+         </div>
+         </div>
+            </div>
+            <div class="tab-pane" id="history" role="tabpanel" aria-labelledby="Upload-tab">
+              <div class="card-body">
+         <div class="table-responsive">
+             <table class="table table-bordered" id="dataTable" cellspacing="0">
+                 <tbody>
+                 <tr>
+                     <td><b><h6>Qualifications: </h6></b><p class="text-muted">{{=post.Highest_Qualification}}</p></td>
+                     <td><b><h6>Gender: </h6></b><p class="text-muted">{{=post.Gender}}</p></td>
+                   </tr>
+                   <tr>
+                     <td><b><h6>Skills: </h6></b><p class="text-muted">{{=post.Skills}}</p></td>
+                     <td><b><h6>Nationality: </h6></b><p class="text-muted">{{=post.Nationality}}</p></td>
+                     <td><b><h6>Languages: </h6></b><p class="text-muted">{{=post.Languages}}</p></td>
+                 </tr>
+                 </tbody>
+             </table>
+             <a class="btn btn-primary" href="{{=URL('view')}}" role="button">BACK</a>
+         </div>
+         </div>
+            </div>
+			<div class="tab-pane" id="history2" role="tabpanel" aria-labelledby="Upload-tab">
+              <div class="card-body">
+         <div class="table-responsive">
+             <table class="table table-bordered" id="dataTable" cellspacing="0">
+                 <tbody>
+                 <tr>
+                     <td><b><h6>Landline: </h6></b><p class="text-muted">{{=post.Landline}}</p></td>
+                     <td><b><h6>Mobile: </h6></b><p class="text-muted">{{=post.Mobile}}</p></td>
+            <td><h6 style="display:inline">Email: </h6></b><p class="text-muted"><a href="mailto:{{=post.Email}}">{{=post.Email}}</a></p></td>
+                 </tr>
+                 <tr>
+                     <td><b><h6>Photo: </h6></b><p class="text-muted">{{=post.Photo}}</p></td>
+                     <td><b><h6>Original CV: </h6></b><p class="text-muted">{{=post.Original_CV}}</p></td>
+                 </tr>
+                 </tbody>
+             </table>
+             <a class="btn btn-primary" href="{{=URL('view')}}" role="button">BACK</a>
+         </div>
+         </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+	 </div>
+	<br>
+	<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Status Updates</button>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+      <table class="table table-bordered" id="dataTable" cellspacing="0">
+          <thead>
+              <tr>
+                  <th>S.no</th>
+                  <th>Status</th>
+                  <th>Update</th>
+                  <th>Remarks</th>
+              </tr>
+          </thead>
+                 <tbody>
+                     {{for status in statuss:}}
+                         {{if status.lead_id == post.id:}}
+                             <tr>
+                                 <td>{{=status.id}}</td>
+                                 <td>{{=status.status}}</td>
+                                 <td>{{=status.Update_Date}}</td>
+                                 <td>{{=status.Remarks}}</td>
+                             </tr>
+                         {{pass}}
+                    {{pass}}
+                 </tbody>
+             </table>
+</div>
+         </div>
+
+	
+ 
+</div>
+<script>
+          $('#bologna-list a').on('click', function (e) {
+              e.preventDefault()
+                  $(this).tab('show')
+            })
+      </script>
+        <br>
+        <br>
+        <br>
+    </body>
+</html>

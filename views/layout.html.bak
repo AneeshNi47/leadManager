@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js" lang="{{=T.accepted_language or 'en'}}"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge{{=not request.is_local and ',chrome=1' or ''}}">
+    <link rel="shortcut icon" href="{{=URL('static','favicon.ico')}}" type="image/x-icon">
+    <link rel="icon" href="{{=URL('static','favicon.ico')}}" type="image/x-icon">
+    <meta name="application-name" content="{{=request.application}}">
+
+    <!-- include stylesheets -->
+    <link href="{{=URL('static/css','sb-admin-2.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{=URL('static/css/fontawesome-free/fontawesome-free','css/all.min.css')}}"/>
+    <link rel="stylesheet" href="{{=URL('static/css','bootstrap.min.css')}}"/>
+    <link rel="stylesheet" href="{{=URL('static','css/web2py-bootstrap4.css')}}"/>
+    <link href="{{=URL('static/css','sb-admin-2.min.css')}}" rel="stylesheet"><!-- SB admin template style -->
+    <link href="{{=URL('static/css','dataTables.bootstrap4.min.css')}}" rel="stylesheet"><!-- SB admin template style -->
+
+    <link rel="shortcut icon" href="{{=URL('static','images/favicon.ico')}}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{{=URL('static','images/favicon.png')}}">
+    <!-- All JavaScript at the bottom, except for Modernizr which enables
+         HTML5 elements & feature detects -->
+    <script src="https://use.fontawesome.com/c6a90144e7.js"></script>
+    <script src="{{=URL('static','js/modernizr-2.8.3.min.js')}}"></script>
+    <!-- Favicons -->
+    {{include 'web2py_ajax.html'}} <!-- this includes jquery.js, calendar.js/.css and web2py.js -->
+    {{block head}}{{end}}
+  </head>
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <div class="sidebar-brand-icon">
+          <img src="{{=URL('static','fa_ATMS_PNG.png')}}" style="width: 70%; height: 70%;" alt="...">
+        </div>
+        <div class="sidebar-brand-text mx-3">Lead Manager</div>
+      </a>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item">
+        <a class="nav-link" href="{{=URL('default','home')}}">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Dashboard</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Interface
+      </div>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+       <!--<ul class="navbar-nav w-100">-->
+          {{for _item in response.menu or []:}}
+           {{if 4 > len(_item) or not _item[3]:}}
+          <li class="nav-item {{if _item[1]:}}active{{pass}}">
+			<a class="nav-link" href="{{=_item[2]}}">
+                {{if _item[0] == "Home":}}<i class="fas fa-home"></i>{{pass}}
+                {{if _item[0] == "General Data":}}<i class="fa fa-bookmark"></i>{{pass}}
+                {{if _item[0] == "Fresh Data":}}<i class="fa fa-external-link-square"></i>{{pass}}
+                {{if _item[0] == "View":}}<i class="fas fa-fw fa-table"></i>{{pass}}
+                {{if _item[0] == "New":}}<i class="fas fa-fw fa-folder"></i>{{pass}}
+                {{if _item[0] == "Assign":}}<i class="fas fa-user-plus"></i>{{pass}}
+                {{if _item[0] == "SMS/EMailer":}}<i class="fa fa-share"></i>{{pass}}
+                {{if _item[0] == "Enrollments":}}<i class="fa fa-check-circle" aria-hidden="true"></i>{{pass}}
+                {{if _item[0] == "Settings":}}<i class="fas fa-fw fa-cog"></i>{{pass}}
+                {{if _item[0] == "Report":}}<i class="fa fa-file-text-o"></i>{{pass}}
+                {{if _item[0] == "Activites":}}<i class="fa fa fa-tasks"></i>{{pass}}
+                <span>{{=_item[0]}}</span>
+             </a>
+         </li>
+        {{elif _item[0] == "Fresh Data":}}
+         <li class="nav-item">
+			<a class="nav-link collapsed" href="{{=_item[2]}}" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fa fa-external-link-square" aria-hidden="true"></i>
+				<span>{{=_item[0]}}</span>
+			</a>
+			<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+				<div class="bg-white py-2 collapse-inner rounded">
+					{{for _subitem in _item[3]:}}
+						<a class="collapse-item" href="{{=_subitem[2]}}">
+							<span>{{=_subitem[0]}}</span>
+						</a>
+					{{pass}}
+				</div>
+			</div>
+		</li>
+
+        {{elif _item[0] == "General Data":}}
+        <li class="nav-item">
+			<a class="nav-link collapsed" href="{{=_item[2]}}" data-toggle="collapse" data-target="#collapseTwo_a" aria-expanded="true" aria-controls="collapseTwo_a">
+                <i class="fa fa-bookmark fa-4x" aria-hidden="true"></i>
+				<span>{{=_item[0]}}</span>
+			</a>
+			<div id="collapseTwo_a" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+				<div class="bg-white py-2 collapse-inner rounded">
+					{{for _subitem in _item[3]:}}
+						<a class="collapse-item" href="{{=_subitem[2]}}">
+							<span>{{=_subitem[0]}}</span>
+						</a>
+					{{pass}}
+				</div>
+			</div>
+		</li>
+        {{pass}}
+     {{pass}}
+
+
+
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+
+
+          <!-- Topbar Search
+          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="button">
+                  <i class="fas fa-search fa-sm"></i>
+                </button>
+              </div>
+            </div>
+          </form>-->
+
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+{{from datetime import datetime}}
+{{today = datetime.now()}}
+
+     <!-- Nav Item - Alerts -->
+            <li class="nav-item dropdown no-arrow mx-1" id="alert_block">
+              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-bell fa-fw"></i>
+                <!-- Counter - Alerts -->{{notify_count=db((db.notifications.Given_to == auth.user_id) & (db.notifications.Status == 'Open') & (db.notifications.set_date < today) ).count()}}
+                  {{if notify_count != 0:}}
+                <span class="badge badge-danger badge-counter">{{=notify_count}}</span>
+                  {{pass}}
+              </a>
+              <!-- Dropdown - Alerts -->
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                <h6 class="dropdown-header">
+                  Alerts Center
+                </h6>
+                  {{if notify_count != 0:}}
+                     {{notifications = db((db.notifications.Given_to == auth.user_id) & (db.notifications.Status == 'Open') & (db.notifications.set_date < today) ).select()}}
+                      {{for notification in notifications:}}
+                          <a class="dropdown-item d-flex align-items-center" href="{{=URL('default','alerts_view')}}">
+                              <div class="mr-3">
+                              {{if notification.notif_use == 'Gnrl_leads':}} <!--color for Genral lead alert-->
+                                      <div class="icon-circle bg-warning">
+                                          <i class="fa fa-bookmark text-white"></i>
+                                      </div>
+                                  {{elif notification.notif_use == 'Frsh_leads':}}<!--color for fresh data lead alert-->
+                                   <div class="icon-circle bg-warning">
+                                          <i class="fa fa-external-link-square text-white"></i>
+                                      </div>
+                                  {{elif notification.notif_use == 'G_reminder':}}<!--color for General data reminder-->
+                                      <div class="icon-circle bg-danger">
+                                          <i class="fa fa-bookmark text-white"></i>
+                                      </div>
+                                  {{elif notification.notif_use == 'F_reminder':}}<!--color for fresh data reminder-->
+                                      <div class="icon-circle bg-danger">
+                                          <i class="fa fa-external-link-square text-white"></i>
+                                      </div>
+                                  {{elif notification.notif_use == 'message':}} <!--color for message-->
+                                      <div class="icon-circle bg-primary">
+                                          <i class="fa fa-comment-o text-white"></i>
+                                      </div>
+                                {{pass}}
+                              </div>
+                              <div>
+                                <div class="small text-gray-500">
+                                    {{=notification.set_date}}
+                                </div>
+                                <span class="font-weight-bold">{{=notification.Message}}</span>
+                              </div>
+                           </a>
+                      {{pass}}
+                  <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                  {{pass}}
+                  {{if notify_count == 0:}}
+                  <a class="dropdown-item text-center small text-gray-500" href="#">No alerts Yet!</a>
+                  {{pass}}
+              </div>
+            </li>
+
+
+            <!-- Nav Item - User Information -->
+        {{if 'auth' in globals():}}
+          <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{if auth.user:}}{{=auth.user.first_name}}{{else:}}Login{{pass}}</span>
+                <i class="fa fa-user-circle-o fa-3x" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+              {{if auth.user:}}
+                  <a class="dropdown-item"  href="{{=URL('default','user/profile')}}">{{=T('Profile')}}</a>
+                  {{if 'change_password' not in auth.settings.actions_disabled:}}
+                      <a class="dropdown-item"  href="{{=URL('default','user/change_password')}}">{{=T('Change Password')}}</a>
+                  {{pass}}
+                  <a class="dropdown-item" href="{{=URL('default','user/logout')}}">{{=T('Logout')}}</a>
+                  {{else:}}
+                      <a class="dropdown-item" href="{{=URL('default','user/login')}}">{{=T('Login')}}</a>
+                      {{if 'register' not in auth.settings.actions_disabled:}}
+                          <a class="dropdown-item" href="{{=URL('default','user/register')}}">{{=T('Sign up')}}</a>
+                      {{pass}}
+                      {{if 'retrieve_password' not in auth.settings.actions_disabled:}}
+                          <a class="dropdown-item" href="{{=URL('default','user/retrieve_password')}}">{{=T('Lost Password')}}</a>
+                      {{pass}}
+                  {{pass}}
+            </div>
+          </li>
+        {{pass}}
+
+          </ul>
+
+        </nav>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+      <!-- Masthead ===================================== -->
+    {{block header}}
+    {{end}}
+    <!-- Main ========================================= -->
+    <!-- Begin page content -->
+    <div class="container-fluid main-container">
+      {{include}}
+      {{=response.toolbar() if response.show_toolbar else ''}}
+      <br>
+    </div>
+      <!-- End of Main Content -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+       <!-- Footer -->
+      <footer class="sticky-footer bg-white" style="padding: 5px;">
+        <div class="container my-auto">
+              <div class="copyright text-center my-auto">
+                <span>Copyright &copy;</span>
+                  <img src="{{=URL('static','fa_ATMS_PNG_full.png')}}" style="width: 20%; height: 20%;" alt="...">
+              </div>
+          </div>
+      </footer>
+      <!-- End of Footer -->
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+  </div>
+  <!-- End of Page Wrapper -->
+
+
+         <!-- Template's bootstrap core JavaScript-->
+  <script src="{{=URL('static','js/jquery.min.js')}}"></script>
+  <script src="{{=URL('static','js/bootstrap.bundle.min.js')}}"></script>
+
+  <!-- Template's  Core plugin JavaScript-->
+  <script type="text/javascript" src="{{=URL('static','js/jquery.easing.min.js')}}"></script>
+
+  <!-- Template's Custom scripts for all pages-->
+  <script src="{{=URL('static/js','sb-admin-2.min.js')}}"></script>
+
+  <!-- Template's Page level plugins -->
+  <script src="{{=URL('static/js','jquery.dataTables.min.js')}}"></script>
+  <script src="{{=URL('static/js','dataTables.bootstrap4.min.js')}}"></script>
+
+  <!-- Template's Page level custom scripts -->
+  <script src="{{=URL('static/js','datatables-demo.js')}}"></script>
+
+    <!-- The javascript =============================== -->
+    {{block page_js}}{{end page_js}}
+    {{if response.google_analytics_id:}}
+    <!-- Analytics ==================================== -->
+    <script src="{{=URL('static','js/analytics.min.js')}}"></script>
+    <script type="text/javascript">
+      analytics.initialize({
+      'Google Analytics':{trackingId:'{{=response.google_analytics_id}}'}
+      });
+    </script>
+    {{pass}}
+</body>
+</html>

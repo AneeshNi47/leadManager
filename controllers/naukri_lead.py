@@ -1,0 +1,103 @@
+# -*- coding: utf-8 -*-
+# try something like
+def index():
+    return dict(message="hello from naukri_lead.py")
+
+@auth.requires(auth.has_membership('Creator') or auth.has_membership('Admin'))
+def create():
+    form = SQLFORM(db.naukri_leads).process()
+    if form.accepted:
+        session.flash = 'form accepted'
+        redirect(URL('naukri_lead','create'))
+    elif form.errors:
+        response.flash = 'form has errors'
+    else:
+        response.flash = 'please fill the form'
+    upload_form = FORM(INPUT(_type='file', _name='data'),
+                       INPUT(_type='submit', _class='btn btn-primary' ))
+    if upload_form.process().accepted:
+        db.naukri_leads.import_from_csv_file(upload_form.vars.data.file, newline='')
+        redirect(URL('naukri_lead','create'))
+    return locals()
+
+@auth.requires(auth.has_membership('Creator') or auth.has_membership('Admin'))
+def N_assign():
+    #members_role = db(db.auth_membership.group_id == 1).select()
+    members = db(db.auth_user).select()
+    leads = db(db.naukri_leads).select()
+    #grid = SQLFORM.grid(db.Fb_leads,create=False,csv=False)
+    return locals()
+
+@auth.requires(auth.has_membership('Creator') or auth.has_membership('Admin'))
+def N_action_assign():
+    db(db.naukri_leads.id == request.vars.lead_no).update(Assigned_to = request.vars.assign_to)
+    db.commit()
+    if request.vars.notifset == 'set':
+        db.notifications.insert(notif_use='Frsh_leads', lead_id=request.vars.lead_no, Message='New Fresh Lead assigned', Given_by=auth.user_id, Given_to=request.vars.assign_to)
+        db.commit()
+    if request.vars.notifset == 'set_bulk':
+        db.notifications.insert(notif_use='Frsh_leads', lead_id=request.vars.lead_no, Message='New {} Fresh datas assigned'.format(request.vars.notifset_no), Given_by=auth.user_id, Given_to=request.vars.assign_to)
+        db.commit()
+    message = request.vars.lead_no
+    return message
+
+@auth.requires_login()
+def show():
+    post = db.naukri_leads(request.args(0,cast=int))
+    statuss = db(db.Lead_Status.lead_type=='Fresh Lead').select()
+    return locals()
+
+
+@auth.requires_login()
+def view():
+    members = db(db.auth_user).select()
+    if auth.user_groups.values()[0] == 'Sales_Staff':
+        query = db.naukri_leads.Assigned_to == auth.user_id
+        leads = db(query).select()
+    else:
+        query = db.naukri_leads.Assigned_to != None
+        leads = db(query).select()
+    return locals()
+
+
+@auth.requires_login()
+def set_reminder():
+    db.notifications.insert(set_date=request.vars.remind_date, notif_use='F_reminder', lead_id=request.vars.lead_id, Message=request.vars.user_remarks, Given_by=request.vars.set_byuser, Given_to=request.vars.set_byuser)
+    db.commit()
+    db.Lead_Status.insert(lead_id=request.vars.lead_id, status="Reminder Set", Updated_by=request.vars.set_byuser, Remarks=request.vars.user_remarks)
+    db.commit()
+    db(db.naukri_leads.id == request.vars.lead_id).update(Final_Status="Reminder Set")
+    db.commit()
+    message = 'Status Updated'
+    redirect(URL('naukri_lead', 'view'))
+    return locals()
+
+@auth.requires(auth.has_membership('Creator') or auth.has_membership('Admin'))
+def unassign_lead():
+    leads = db(db.naukri_leads.id == request.vars.deassign).select()
+    for lead in leads:
+        to_userid = lead.Assigned_to
+    db.notifications.insert(notif_use='Gnrl_leads', lead_id=request.vars.deassign, Message='One Fresh Data was removed by Admin', Given_by=auth.user_id, Given_to=to_userid)
+    db.commit()
+    db(db.naukri_leads.id == request.vars.deassign).update(Assigned_to=None)
+    db.commit()
+    message = "Unassigned"
+    return message
+
+@auth.requires(auth.has_membership('Sales_Staff') or auth.has_membership('Admin'))
+def leadStatus_update():
+    db.Lead_Status.insert(lead_id=request.vars.view_leadno, lead_type='Fresh Lead', status=request.vars.view_status, Updated_by=request.vars.view_updater, Remarks=request.vars.view_remarks)
+    db.commit()
+    db(db.naukri_leads.id == request.vars.view_leadno).update(Final_Status=request.vars.view_status)
+    db.commit()
+    message = 'Status Updated'
+    return message
+
+@auth.requires_login()
+def report():
+    Total_leads = 10
+    Pending_leads = 2
+    firstcontact_leads = 4
+    converted_leads = 1
+    lost_leads = 3
+    return locals()

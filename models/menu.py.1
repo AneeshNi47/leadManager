@@ -1,0 +1,22 @@
+# -*- coding: utf-8 -*-
+# this file is released under public domain and you can use without limitations
+
+# ----------------------------------------------------------------------------------------------------------------------
+# this is the main application menu add/remove items as required
+# ----------------------------------------------------------------------------------------------------------------------
+
+response.menu = [
+    (T('Home'), False, URL('default', 'home'), [])
+]
+
+# ----------------------------------------------------------------------------------------------------------------------
+# provide shortcuts for development. you can remove everything below in production
+# ----------------------------------------------------------------------------------------------------------------------
+if auth.has_membership('Admin'):
+	response.menu += ((T('View'), False, URL('lead_entry', 'view'), []),(T('New'), False, URL('lead_entry', 'create'),[]),(T('Assign'),False,URL('default','assign'),[]),(T('Settings'),False,URL('default','settings'),[]))
+
+if auth.has_membership('Creator'):
+	response.menu += ((T('New'), False, URL('lead_entry', 'create'),[]),(T('Settings'),False,URL('default','settings'),[]))
+
+if auth.has_membership('Marketing'):
+	response.menu += ((T('View'), False, URL('lead_entry', 'view')),(T('Report'),False,URL('default','index'),[]))

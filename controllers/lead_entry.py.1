@@ -1,0 +1,19 @@
+# -*- coding: utf-8 -*-
+# try something like
+@auth.requires_login()
+def create():
+    form3 = FORM(INPUT(_name="csv", requires=IS_NOT_EMPTY()))
+    
+    form = SQLFORM(db.Fb_leads).process()
+    if form.accepted: redirect(URL('index'))
+    return locals()
+
+@auth.requires_login()
+def show():
+    post = db.Fb_leads(request.args(0,cast=int))
+    return locals()
+
+@auth.requires_login()
+def view():
+    rows = db(db.Fb_leads).select()
+    return locals()

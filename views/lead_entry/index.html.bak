@@ -1,0 +1,65 @@
+{{extend 'layout.html'}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Lead Managment Application</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <style> body { background-color: #eeeeee;}</style>
+  <style>
+        .button:hover {background-color: #e8d5eb}
+        .button:active {
+          transform: translateY(4px);
+        }
+ </style>
+  <style>
+#rcorners1 {
+  border-radius: 15px;
+  background: #393e46;
+  padding: 20px;
+  width: 50%;
+  height: 5%;
+}
+</style>
+</head>
+
+<body>
+
+<div id="rcorners1">
+  <h1 style="color:white;" align="center" >Lead Entry</h1>
+  <p  style="color:white;" align="center">Enter Leads</p>
+</div>
+<br>
+    <br>
+<div class="container">
+    <div class="col-sm-12">
+      <div id="Facebook" class="dropdown">
+          <button type="button" class="btn  dropdown-toggle" data-toggle="dropdown">
+             <i class="fa fa-facebook-square fa-3x" style="color:#00adb5;" aria-hidden="false"></i>
+          </button>
+          <div class="dropdown-menu">
+                <a class="dropdown-item" href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>New</a>
+                <a class="dropdown-item" href="#"><i class="fa fa-eye" aria-hidden="true">View</i></a>
+                <a class="dropdown-item" href="#"><i class="fa fa-trash-o" aria-hidden="true">Delete</i></a>
+          </div>
+      </div>
+            <div id="linkedIN" class="dropdown">
+          <button type="button" class="btn  dropdown-toggle" data-toggle="dropdown">
+             <i class="fa fa-linkedin-square fa-3x" style="color:#00adb5;" aria-hidden="false"></i>
+          </button>
+          <div class="dropdown-menu">
+                <a class="dropdown-item" href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>New</a>
+                <a class="dropdown-item" href="#"><i class="fa fa-eye" aria-hidden="true">View</i></a>
+                <a class="dropdown-item" href="#"><i class="fa fa-trash-o" aria-hidden="true">Delete</i></a>
+          </div>
+      </div>
+    </div>
+</div>
+
+</body>
+</html>

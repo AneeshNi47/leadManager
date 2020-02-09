@@ -1,0 +1,38 @@
+{{extend 'layout.html'}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Reports</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link href="{{=URL('static/css','sb-admin-2.min.css')}}" rel="stylesheet"><!-- SB admin template style -->
+  <script src="https://use.fontawesome.com/c6a90144e7.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+
+<body>
+<h1 class="h3 mb-2 text-gray-800">Lead Updation Status</h1>
+  <div class="card shadow mb-4">
+     <div class="card-header py-3">
+       <h5 class="m-0 font-weight-bold text-primary">Your leads</h5>
+     </div>
+     <div class="card-body">
+         <div class="table-responsive">
+                 <h6>Total Leads: </h6><p class="text-muted">{{=Total_leads}}</p>
+                 <h6>Pending Leads: </h6><p class="text-muted">{{=Pending_leads}}</p>
+                 <h6>First Contacts: </h6><p class="text-muted">{{=firstcontact_leads}}</p>
+                 <h6>Converted Leads: </h6><p class="text-muted">{{=converted_leads}}</p>
+                 <h6>Lost Leads:  </h6><p class="text-muted">{{=lost_leads}}</p>
+         </div>
+     </div>
+   </div>
+ <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fa fa-angle-up"></i>
+  </a>
+
+</body>
+</html>
